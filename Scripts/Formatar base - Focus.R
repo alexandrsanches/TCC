@@ -1,7 +1,8 @@
 #### Load packages ####
 
 library(lubridate)
-library(tidyverse)
+library(dplyr)
+library(rbcb)
 
 #### Set options and download file ####
 
@@ -14,8 +15,8 @@ download.file("https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/o
 
 focus <- read.csv("~/Downloads/Focus.csv",
                   colClasses = c("Data" = "Date", "DataReferencia" = "Date")) %>%
-  filter(Periodicidade == "Anual",
-         Indicador %in% c("IPCA", "PIB Total", "Meta para taxa over-selic", "Taxa de câmbio")) %>%
+  filter(Periodicidade == "Mensal",
+         Indicador %in% c("IPCA", "PIB Total", "Selic", "CÃ¢mbio")) %>%
   mutate(Indicador = ifelse(IndicadorDetalhe != "null", paste(Indicador, "-", IndicadorDetalhe), Indicador),
          Valor = as.numeric(gsub(Valor, pattern = ",", replacement = "."))) %>%
   select(-IndicadorDetalhe)
@@ -30,5 +31,11 @@ focus %<>%
          DataReferencia.Dia = day(DataReferencia),
          DataReferencia.AnoMes = floor_date(DataReferencia, "month"),
          DiadaSemana = format(Data, "%a")) %>%
-  arrange(Instituicao, Indicador, Data, DataReferencia.Ano)
+  arrange(Instituicao, Indicador, Data, DataReferencia, DataReferencia.Ano)
+
+teste <- focus %>%
+  filter(Indicador == "Selic",
+         Data > "2002-01-01")
+
+selic <- get_series(432)
 
