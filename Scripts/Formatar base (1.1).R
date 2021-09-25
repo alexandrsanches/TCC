@@ -61,7 +61,10 @@ id <- base %>%
          Indicador == "Selic") %>%
   select(Instituicao, Valor, Data, DataReferencia)
 
+start <- Sys.time()
 df <- data.frame()
+
+#### For que necessita de otimização ####
 
 for (i in 1:nrow(id)) {
   
@@ -73,7 +76,8 @@ for (i in 1:nrow(id)) {
   if (is_empty(reunion_date)) {
     
     if (month == 12) {
-      month <- 13
+      month <- 1
+      year <- year(pull(id[i, 3])) + 1
     } else {
       month <- month(pull(id[i, 3])) + 1
     }
@@ -84,6 +88,7 @@ for (i in 1:nrow(id)) {
     
     reunion_date <- reunioes[paste0(year, "-", month, "/", year, "-", month)]
   }
+  
   reunion_date <- data.frame(DataReuniao = index(reunion_date),
                              Reuniao = reunion_date[1,])
   
@@ -97,6 +102,10 @@ for (i in 1:nrow(id)) {
   df <- rbind(df, temp)
   
 }
+
+end <- Sys.time()
+
+start - finish
 
 # mutate(DataReuniao = case_when(Data >= initial_month & Data <= reunion_date[,1] ~ reunion_date[, 1]))
 
