@@ -1,6 +1,9 @@
 #### Set working directory ####
 
-setwd("~/OneDrive/TCC")
+switch (Sys.info()["sysname"],
+        "Darwin" = setwd("~/OneDrive/TCC"),
+        "Linux" = setwd("~/Projetos/TCC")
+)
 
 #### Load packages ####
 
@@ -31,7 +34,7 @@ df <- data.frame()
 #### For que necessita de otimização ####
 
 for (i in 1:nrow(id)) {
-  
+
   year <- year(pull(id[i, 2]))
   month <- format(pull(id[i, 2]), "%m")
   
@@ -68,6 +71,6 @@ for (i in 1:nrow(id)) {
 
 end <- Sys.time()
 
-start - end
+end - start
 
 #saveRDS(df, file = "base_final.rds")
