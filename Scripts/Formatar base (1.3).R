@@ -28,6 +28,16 @@ id <- base %>%
   filter(Indicador == "Selic") %>%
   select(Instituicao, Data, DataReferencia, Valor)
 
+cambio <- base %>%
+  filter(Indicador == "Câmbio") %>%
+  select(Instituicao, Data, DataReferencia, Valor) %>%
+  rename(Cambio = Valor)
+
+ipca <- base %>%
+  filter(Indicador == "Selic") %>%
+  select(Instituicao, Data, DataReferencia, Valor) %>%
+  rename(IPCA = Valor)
+
 start <- Sys.time()
 df <- data.frame(matrix(ncol = 6, nrow = nrow(id),
                         dimnames = list(NULL, c("Instituicao", "Data", "DataReferencia", "Valor",

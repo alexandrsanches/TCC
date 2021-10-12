@@ -1,5 +1,7 @@
 # Revisão de literatura
 
+
+
 Há uma ampla literatura para estudar os efeitos da política monetária, com notável enfoque naqueles intervenientes nas estruturas das taxas de juros de curto prazo e reações do mercado de capitais.  É de fundamental importância que as instituições participantes do Sistema Financeiro Nacional (SFN) consigam antecipar os movimentos de política monetária feitos pelo Conselho de Política Monetária (COPOM). Cook & Hahn (1989) avaliaram como a rentabilidade de títulos de longo prazo de diferentes maturidades reagem a mudanças na taxa básica de juros do *Federal Reserve (Fed Funds Rate)* no dia em que a mudança ocorre, conforme a seguinte especificação:
 $$
 i_{s,d}-i_{s,d-1}=\alpha_s+ \lambda_s(\xi_d-
@@ -27,4 +29,6 @@ Perobelli et al. (2010) identificaram uma eficiência informacional semiforte na
 Robitaille e Roush (2005) utilizaram um estudo de evento, utilizando o método proposto por Kuttner (2001) e Gürkaynak (2005) a partir de dados intradiários de 1999 a 2004. Obtiveram respostas significativas a partir do spread entre o C-Bonds brasileiros e o índice Bovespa, que responde significativamente às decisões do Federal Open Market Committee (FOMC) e a alguns anúncios de indicadores macroeconômicos norte-americanos, mostrando a extensão da relação entre esses mercados (Brasil e EUA) e seu comportamento. 
 
 Conforme constatado em Garcia & Mendonça (2019), as expectativas de inflação declaradas pelas instituições participantes do Boletim Focus são boas previsoras no curto prazo (até 12 meses à frente), mas, sozinhas, perdem a capacidade de previsão da inflação quando se considera o médio prazo (18 a 24 meses à frente). Investiga-se aqui como a instituições alteram suas projeções sobre indicadores macroeconômicos (Selic, PIB, IPCA e taxa de câmbio) no curto prazo frente a uma surpresa de política monetária, com o pressuposto de que as instituições preocupam-se com os movimentos futuros da Meta Selic ao formar suas expectativas.
+
+
 
