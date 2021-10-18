@@ -14,3 +14,5 @@
 > - Robitaille & Roush (2005)
 > - Gürkaynak (2005)
 > - Garcia & Mendonça (2019)
+> - Mishkin (2004)
+> - Mendonça & Filho (2010)
