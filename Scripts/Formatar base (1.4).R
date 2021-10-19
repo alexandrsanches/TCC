@@ -35,7 +35,7 @@ cambio <- base_mensal %>%
 
 ## IPCA ----
 ipca <- base_mensal %>%
-  filter(Indicador == "Selic") %>%
+  filter(Indicador == "IPCA") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(IPCA = Valor)
 

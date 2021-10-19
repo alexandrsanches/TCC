@@ -32,20 +32,20 @@ reunioes <- xts(reunioes[, -2], order.by = reunioes$Data)
 
 #### Import and clean
 
-#base <- read_csv("Dados/Focus.csv") %>%
-#  filter(Periodicidade == "Mensal",
-#         Indicador %in% c("IPCA", "PIB Total", "Selic", "Câmbio"),
-#         Data >= "2003-01-01" & Data <= "2020-12-31") %>%
-#  mutate(Indicador = ifelse(IndicadorDetalhe != "null", paste(Indicador, "-", IndicadorDetalhe), Indicador),
-#         Valor = as.numeric(gsub(Valor, pattern = ",", replacement = "."))) %>%
-#  select(-IndicadorDetalhe) %>%
-#  group_by(Instituicao, Indicador, Periodicidade, DataReferencia) %>% 
-#  arrange(Data) %>% 
-#  complete(Data = seq.Date(min(Data), max(Data) + 14, by="day")) %>% 
-#  mutate(Atualizacao = ifelse(is.na(Valor), 0, 1)) %>%
-#  fill(c(Valor, DataReferencia), .direction = "down") %>% 
-#  arrange(Instituicao, Indicador, Periodicidade, Data, DataReferencia) %>% 
-#  ungroup()
+base <- read_csv("Dados/Focus.csv") %>%
+  filter(Periodicidade == "Mensal",
+         Indicador %in% c("IPCA", "PIB Total", "Selic", "Câmbio"),
+         Data >= "2003-01-01" & Data <= "2020-12-31") %>%
+  mutate(Indicador = ifelse(IndicadorDetalhe != "null", paste(Indicador, "-", IndicadorDetalhe), Indicador),
+         Valor = as.numeric(gsub(Valor, pattern = ",", replacement = "."))) %>%
+  select(-IndicadorDetalhe) %>%
+  group_by(Instituicao, Indicador, Periodicidade, DataReferencia) %>% 
+  arrange(Data) %>% 
+  complete(Data = seq.Date(min(Data), max(Data) + 14, by="day")) %>% 
+  mutate(Atualizacao = ifelse(is.na(Valor), 0, 1)) %>%
+  fill(c(Valor, DataReferencia), .direction = "down") %>% 
+  arrange(Instituicao, Indicador, Periodicidade, Data, DataReferencia) %>% 
+  ungroup()
 
 #base %<>%
 #  mutate(Data.Ano = year(Data),
