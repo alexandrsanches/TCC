@@ -23,7 +23,7 @@ copom <- import("Dados/copom.rds") %>%
 
 ## Bases mensais e anuais ----
 base_mensal <- import("Dados/base_mensal.rds")
-base_anual <- import("Dados/base_anual.rds")
+#base_anual <- import("Dados/base_anual.rds")
 
 # Clean data ----
 
@@ -39,33 +39,38 @@ ipca <- base_mensal %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(IPCA = Valor)
 
-## PIB ----
-pib <- base_anual %>%
-  filter(IndicadorDetalhe == "PIB Total") %>%
-  select(Instituicao, Data, DataReferencia, Valor) %>%
-  rename(PIB = Valor)
-
 ## Base final ----
-base <-  base %>%
+base <- base %>%
   mutate_at(vars(contains("Data")), as_date) %>%
   left_join(copom) %>%
-  filter(month(DataReferencia) == month(DataReuniao) &
-           year(DataReferencia) == year(DataReuniao)) %>%
+  #filter(month(DataReferencia) == month(DataReuniao) &
+  #         year(DataReferencia) == year(DataReuniao)) %>%
   left_join(ipca) %>%
   left_join(cambio) %>%
-  left_join(pib) %>%
   rename(SELIC = Valor) %>%
   relocate(where(is.numeric), .after = where(is.Date)) %>%
   relocate(Reuniao, .before = Instituicao) %>%
   mutate(Surpresa = MetaSelic - SELIC,
          Instituicao = factor(Instituicao))
 
+### Filtrar instituições com poucas projeções ----
+instituicoes <- base %>% 
+  group_by(Instituicao) %>%
+  distinct(Reuniao) %>%
+  mutate(n = max(Reuniao) - min(Reuniao)) %>%
+  ungroup() %>%
+  distinct(Instituicao, .keep_all = TRUE) %>%
+  filter(n > 50) %>%
+  pull(Instituicao)
+
+base <- base %>%
+  filter(Instituicao %in% instituicoes)
+
+
 rm(base_mensal,
-   base_anual,
    cambio,
    copom,
-   ipca,
-   pib)
+   ipca)
 
 # Generate charts ----
 plot1 <- xyplot(IPCA ~ Data | Instituicao, 
