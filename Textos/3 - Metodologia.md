@@ -53,7 +53,11 @@ A população-objetivo do IPCA é referente a famílias residentes nas áreas ur
 
 ### Surpresa de política monetária
 
-A surpresa de política monetária é definida como sendo a diferença entre a variação da meta Selic (definida pelo Copom) e a variação esperada pela instituição:
+De acordo com Pereira & Nakane (2019):
+
+> Choques de política monetária podem ser definidos, de forma mais ampla, como desvios na tomada de decisões de juros em relação à parte sistemática de determinada regra de reação do banco central (BC). 
+
+Portanto, a surpresa de política monetária é definida como sendo a diferença entre a variação da meta Selic (definida pelo Copom) e a variação esperada pela instituição:
 
 $surpresa_{i,t} = \Delta selic^{meta}_t - \Delta selic^{prevista}_{i,t-1}$
 
