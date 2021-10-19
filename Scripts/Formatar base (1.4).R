@@ -13,9 +13,15 @@ library(lubridate)
 library(plm)
 library(lattice)
 library(latticeExtra)
+<<<<<<< Updated upstream
 
 # Import data ----
 
+=======
+
+# Import data ----
+
+>>>>>>> Stashed changes
 ## Base final ----
 base <- import("Dados/base_final.rds")
 copom <- import("Dados/copom.rds") %>%
@@ -50,7 +56,7 @@ base <-  base %>%
   mutate_at(vars(contains("Data")), as_date) %>%
   left_join(copom) %>%
   filter(month(DataReferencia) == month(DataReuniao) &
-         year(DataReferencia) == year(DataReuniao)) %>%
+           year(DataReferencia) == year(DataReuniao)) %>%
   left_join(ipca) %>%
   left_join(cambio) %>%
   left_join(pib) %>%
@@ -81,6 +87,10 @@ plot1 <- xyplot(IPCA ~ Data | Instituicao,
 plot1
 
 # Regressions ----
+<<<<<<< Updated upstream
+=======
+## Pooled OLS ----
+>>>>>>> Stashed changes
 reg.pooled <- plm(SELIC ~ Surpresa, 
                data = base, 
                index = "Data",
@@ -88,3 +98,60 @@ reg.pooled <- plm(SELIC ~ Surpresa,
 
 summary(reg.pooled)
 
+<<<<<<< Updated upstream
+=======
+## Efeito fixo ----
+reg.ef <- plm(SELIC ~ Surpresa, 
+              data = base,
+              index = "Data",
+              model = "within")
+
+summary(reg.ef)
+summary(fixef(reg.ef))
+
+## Efeito aleatório ----
+reg.ea <- plm(SELIC ~ Surpresa,
+              data = base,
+              index = "Data",
+              model = "random", 
+              random.method = "walhus")
+
+summary(reg.ea)
+
+# Comparação entre modelos ----
+
+## Modelo Pooled x Modelo de Efeitos Fixos ----
+pFtest(reg.ef,reg.pooled)
+
+## Modelo Pooled x Modelo de Efeitos Aleatórios ----
+plmtest(reg.pooled, type = "bp")
+
+## Modelo Efeitos Fixos x Modelo de Efeitos Aleatórios ----
+phtest(reg.ef,reg.ea)
+
+# Testes para o modelo ----
+
+## Dependência transversal ----
+pcdtest(reg.ea, test="cd")
+
+## Normalidade dos resíduos ----
+shapiro.test(reg.ea$residuals)
+
+## Homocedasticidade dos resíduos ----
+bptest(reg.ea)
+
+## Correlação serial ----
+pbgtest(reg.ea) 
+
+## Efeitos individuais ou de tempo ----
+
+### Individual ----
+pwtest(reg.pooled) 
+
+### Tempo ----
+pwtest(reg.pooled, effect = "time") 
+
+## Raiz unitária ----
+adf.test(base$Surpresa, k = 2)
+
+>>>>>>> Stashed changes
