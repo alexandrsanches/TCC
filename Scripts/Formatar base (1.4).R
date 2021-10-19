@@ -81,6 +81,9 @@ plot1 <- xyplot(IPCA ~ Data | Instituicao,
 plot1
 
 # Regressions ----
+base <- pdata.frame(base,
+                    index = c("Instituicao","Data"))
+
 ## Pooled OLS ----
 reg.pooled <- plm(SELIC ~ Surpresa, 
                data = base,
