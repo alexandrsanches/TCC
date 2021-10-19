@@ -64,9 +64,11 @@ Dado que as instituições realizam projeções em datas diferentes, para conseg
 
 ### Surpresa de política monetária
 
-> **O que precisa ser feito:**
->
-> - Definir o que é a surpresa, sem equações, só a ideia.
+A surpresa de política monetária é definida como sendo a diferença entre a variação da meta Selic (definida pelo Copom) e a variação esperada pela instituição:
+
+$surpresa_{i,t} = \Delta selic^{meta}_t - \Delta selic^{prevista}_{i,t-1}$
+
+Onde $surpresa_{i,t}$ representa a supresa da instituição $i$ no tempo $t$, $\Delta selic^{meta}_t$ representa a diferença entre os valores da meta da Selic entre as reuniões ocorridas entre $t$ e $t-1$ e $\Delta selic^{prevista}_{i,t-1}$ representa a diferença entre os valores previstos da Selic pela instituição $i$ entre as reuniões ocorridas entre $t$ e $t-1$ .
 
 ## Estratégia econométrica
 
@@ -83,4 +85,15 @@ Dado que as instituições realizam projeções em datas diferentes, para conseg
 > - Certamente utilizaremos regressões para dados em painel;
 > - Tenho um material explicando de forma intuitiva as diferenças entre regressões com painéis com efeitos fixos e aleatórios;
 > - Se ficarmos sem tempo podemos usar o Gretl para essas estimações;
+> - Testaremos individualmente se a surpresa afeta as previsões das outras variáveis (Selic, IPCA e câmbio)
 > - A medida mais tradicional de choque seria simplesmente estimar uma **Regra de Taylor** para a Selic e usar os resíduos dessa equação como sendo os choques não antecipados (ou seja, a surpresa). Isso é fácil fazer.
+
+### Especificação dos modelos
+
+$\Delta selic^{prevista}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+
+$\Delta ipca^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+
+$\Delta cambio^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+
+As variáveis dependentes estão medidas em variação pois o interesse aqui não são os níveis, o interesse é verificar se esses níveis são alterados em resposta à surpresa.
