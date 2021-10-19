@@ -13,7 +13,8 @@ library(xts)
 
 #### Import and clean data ####
 
-base <- readRDS("Dados/base_mensal.rds")
+base_mensal <- readRDS("Dados/base_mensal.rds")
+base_anual <- readRDS("Dados/base_anual.rds")
 
 copom <- readRDS("Dados/copom.rds")
 
@@ -24,19 +25,25 @@ reunioes <- xts(reunioes[, -2], order.by = reunioes$Data)
 
 #### Import and clean
 
-id <- base %>%
+id <- base_mensal %>%
   filter(Indicador == "Selic") %>%
   select(Instituicao, Data, DataReferencia, Valor)
 
-cambio <- base %>%
+cambio <- base_mensal %>%
   filter(Indicador == "Câmbio") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(Cambio = Valor)
 
-ipca <- base %>%
+ipca <- base_mensal %>%
   filter(Indicador == "Selic") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(IPCA = Valor)
+
+pib <- base_anual %>%
+  filter(IndicadorDetalhe == "PIB") %>%
+  select(Instituicao, Data, DataReferencia, Valor) %>%
+  rename(PIB = Valor)
+
 
 start <- Sys.time()
 df <- data.frame(matrix(ncol = 6, nrow = nrow(id),
