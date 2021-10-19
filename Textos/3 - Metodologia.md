@@ -4,25 +4,27 @@
 >
 > - Dizer qual a amostra foi utilizada na análise;
 > - Justificar o motivo de ter usado essa amostra;
-> - Descrever a base de dados;
+> - ~~Descrever a base de dados~~;
 > - Colocar os gráficos das séries utilizadas.
 
-Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus, onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, IGPM, Câmbio, Taxa de crescimento do PIB e a taxa Selic. 
+Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em <**url**>), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
 
 Os indicadores são compilados na sexta-feira anterior à publicação a partir de informações repassadas pelos principais bancos, agentes econômicos e instituições financeiras. As expectativas projetadas para o fechamento daquele ano são reunidas durante a semana e compiladas na sexta-feira. Os dados no relatório costumam ser apresentados em forma de tabela e em formato de gráfico. A tabela traz o comportamento dos indicadores na data de publicação do relatório, da semana anterior e do último mês. 
 
 O Boletim Focus é divulgado às 08:00 de todas as segundas-feiras do ano no site oficial do Banco Central do Brasil. Na primeira página, encontramos uma tabela anual intitulada “Mediana – Agregado”. Isso significa que os números na tabela são a mediana de todos os agentes consultados pelo Bacen que fazem esse tipo de projeção. As sessões mostram a expectativa para o ano vigente e para os próximos três anos. As três primeiras colunas da tabela mostram, respectivamente, a expectativa do comportamento dos indicadores no dia da publicação, na semana anterior e no último mês (quatro semanas antes). 
 
-Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim Focus, contendo o código identificador da instituição, o indicador projetado, a data onde a projeção foi realizada, o mês de referência dessa projeção, a data da reunião do COPOM correspondente à projeção e a meta da taxa Selic definida na reunião. Usamos as projeções anualizadas, ou seja, a projeção realizada no mês $t$ refere-se ao ano corrente daquele mês. Utilizaremos as projeções das seguintes variáveis:
+## Base de dados
 
-| Variável                             | Abreviação | Período           |
-| ------------------------------------ | ---------- | ----------------- |
-| Taxa básica de juros                 | Meta Selic | 2003:01 - 2020:12 |
-| Taxa nominal de câmbio               | Câmbio     | 2003:01 - 2020:12 |
-| Índice de Preços ao Consumidor Amplo | IPCA       | 2003:01 - 2020:12 |
-| Produto Interno Bruto                | PIB        | 2003:01 - 2020:12 |
+Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim Focus, contendo o código identificador da instituição, o indicador projetado, a data onde a projeção foi realizada, o mês de referência dessa projeção, a data da reunião do Copom correspondente à projeção e a meta da taxa Selic definida na reunião. Usamos as projeções anualizadas, ou seja, a projeção realizada no mês $t$ refere-se ao ano corrente daquele mês. Utilizaremos as projeções das seguintes variáveis:
 
-Com essa amostra é possível verificar, por instituição, como suas projeções são modificadas com uma surpresa de política monetária. 
+| Variável                             | Abreviação     | Período           |
+| ------------------------------------ | -------------- | ----------------- |
+| Taxa básica de juros                 | $selic^{meta}$ | 2003:01 - 2020:12 |
+| Taxa nominal de câmbio               | $cambio$       | 2003:01 - 2020:12 |
+| Índice de Preços ao Consumidor Amplo | $ipca$         | 2003:01 - 2020:12 |
+| Produto Interno Bruto                | $pib$          | 2003:01 - 2020:12 |
+
+Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. 
 
 Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 
 
@@ -52,10 +54,33 @@ A população-objetivo do IPCA é referente a famílias residentes nas áreas ur
 
 ### PIB
 
-O produto interno bruto (PIB) representa a soma (em valores monetários) de todos os bens e serviços finais produzidos numa determinada região, sejam países, estados ou cidades, durante um período determinado (mês, trimestre, ano, etc). 
+O Produto Interno Bruto (PIB) representa a soma (em valores monetários) de todos os bens e serviços finais produzidos numa determinada região, sejam países, estados ou cidades, durante um período determinado (mês, trimestre, ano, etc). 
 
 Na contagem do PIB, considera-se apenas bens e serviços finais, excluindo da conta todos os bens de consumo de intermediário. Isso é feito com o intuito de evitar o problema da dupla contagem, quando valores gerados na cadeia de produção aparecem contados duas vezes na soma do PIB.
 
 Conforme abordado anteriormente, apesar de o Boletim Focus fornecer projeções para três anos a frente, a análise focará apenas no curto prazo (de 1 a 12 meses).
 
 Dado que as instituições realizam projeções em datas diferentes, para conseguirmos realizar análises com datas equivalentes, o valor projetado no instante $t$ foi estendido para as datas posteriores até a próxima projeção realizada.
+
+### Surpresa de política monetária
+
+> **O que precisa ser feito:**
+>
+> - Definir o que é a surpresa, sem equações, só a ideia.
+
+## Estratégia econométrica
+
+> **O que podemos fazer:**
+>
+> - Detalhar a construção da surpresa;
+> - Mostrar o impacto da surpresa sobre as previsões Focus;
+> - Verificar se há diferença nas alterações das previsões nos momentos onde há surpresa *versus* comentos sem surpresa;
+> - Comparar a surpresa que você está propondo com uma medida mais tradicional de choque;
+
+> **Observações:**
+>
+> - A surpresa também pode ser chamada de *choque de política monetária*;
+> - Certamente utilizaremos regressões para dados em painel;
+> - Tenho um material explicando de forma intuitiva as diferenças entre regressões com painéis com efeitos fixos e aleatórios;
+> - Se ficarmos sem tempo podemos usar o Gretl para essas estimações;
+> - A medida mais tradicional de choque seria simplesmente estimar uma **Regra de Taylor** para a Selic e usar os resíduos dessa equação como sendo os choques não antecipados (ou seja, a surpresa). Isso é fácil fazer.
