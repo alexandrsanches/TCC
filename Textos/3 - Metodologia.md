@@ -22,7 +22,6 @@ Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim
 | Taxa básica de juros                 | $selic^{meta}$ | 2003:01 - 2020:12 |
 | Taxa nominal de câmbio               | $cambio$       | 2003:01 - 2020:12 |
 | Índice de Preços ao Consumidor Amplo | $ipca$         | 2003:01 - 2020:12 |
-| Produto Interno Bruto                | $pib$          | 2003:01 - 2020:12 |
 
 Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. 
 
@@ -51,16 +50,6 @@ O Sistema Nacional de Índices de Preços ao Consumidor (SNIPC) consiste em uma 
 O sistema abrange as regiões metropolitanas do Rio de Janeiro, Porto Alegre, Belo Horizonte, Recife, São Paulo, Belém, Fortaleza, Salvador e Curitiba, além do Distrito Federal e do município de Goiânia. É a partir da agregação dos índices regionais referentes a uma mesma faixa de renda que se obtém o índice nacional.
 
 A população-objetivo do IPCA é referente a famílias residentes nas áreas urbanas das regiões de abrangência do SNIPC com rendimentos de 1 (hum) e 40 (quarenta) salários-mínimos, qualquer que seja a fonte de rendimentos. A Pesquisa é realizada em estabelecimentos comerciais, prestadores de serviços, domicílios e concessionárias de serviços públicos mensalmente.
-
-### PIB
-
-O Produto Interno Bruto (PIB) representa a soma (em valores monetários) de todos os bens e serviços finais produzidos numa determinada região, sejam países, estados ou cidades, durante um período determinado (mês, trimestre, ano, etc). 
-
-Na contagem do PIB, considera-se apenas bens e serviços finais, excluindo da conta todos os bens de consumo de intermediário. Isso é feito com o intuito de evitar o problema da dupla contagem, quando valores gerados na cadeia de produção aparecem contados duas vezes na soma do PIB.
-
-Conforme abordado anteriormente, apesar de o Boletim Focus fornecer projeções para três anos a frente, a análise focará apenas no curto prazo (de 1 a 12 meses).
-
-Dado que as instituições realizam projeções em datas diferentes, para conseguirmos realizar análises com datas equivalentes, o valor projetado no instante $t$ foi estendido para as datas posteriores até a próxima projeção realizada.
 
 ### Surpresa de política monetária
 
