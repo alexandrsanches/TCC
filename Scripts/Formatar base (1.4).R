@@ -13,15 +13,9 @@ library(lubridate)
 library(plm)
 library(lattice)
 library(latticeExtra)
-<<<<<<< Updated upstream
 
 # Import data ----
 
-=======
-
-# Import data ----
-
->>>>>>> Stashed changes
 ## Base final ----
 base <- import("Dados/base_final.rds")
 copom <- import("Dados/copom.rds") %>%
@@ -41,7 +35,7 @@ cambio <- base_mensal %>%
 
 ## IPCA ----
 ipca <- base_mensal %>%
-  filter(Indicador == "Selic") %>%
+  filter(Indicador == "IPCA") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(IPCA = Valor)
 
@@ -87,19 +81,16 @@ plot1 <- xyplot(IPCA ~ Data | Instituicao,
 plot1
 
 # Regressions ----
-<<<<<<< Updated upstream
-=======
+base <- pdata.frame(base,
+                    index = c("Instituicao","Data"))
+
 ## Pooled OLS ----
->>>>>>> Stashed changes
 reg.pooled <- plm(SELIC ~ Surpresa, 
-               data = base, 
-               index = "Data",
+               data = base,
                model = "pooling")
 
 summary(reg.pooled)
 
-<<<<<<< Updated upstream
-=======
 ## Efeito fixo ----
 reg.ef <- plm(SELIC ~ Surpresa, 
               data = base,
@@ -154,4 +145,3 @@ pwtest(reg.pooled, effect = "time")
 ## Raiz unitária ----
 adf.test(base$Surpresa, k = 2)
 
->>>>>>> Stashed changes
