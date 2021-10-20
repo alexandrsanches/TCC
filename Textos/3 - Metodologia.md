@@ -42,7 +42,7 @@ O sistema Selic é fundamental em possíveis casos de falência ou insolvência 
 
 ![Selic](Imagens/Selic.png)
 
-Na Figura 1 é possível verificar o histórico de projeções da Selic de cada uma das 150 instituições participantes do Boletim Focus. Naturalmente, todas tem um viés descendente, dado que a Meta Selic teve uma considerável queda ao longo das últimas duas décadas. Como pôde ser observado, nem todas as instituições participantes do Boletim Focus tem um histórico de projeções longo, portanto, um filtro será aplicado para que a instituição tenha realizado projeções de, pelo menos, 40 reuniões. Com isso, a regressão em painel ficará menos desbalanceada. 
+Na Figura 1 é possível verificar o histórico de projeções da Selic de cada uma das 150 instituições participantes do Boletim Focus. Naturalmente, todas tem um viés descendente, dado que a Meta Selic teve uma considerável queda ao longo das últimas duas décadas.
 
 ### Taxa nominal de câmbio
 
@@ -52,7 +52,7 @@ As taxas de câmbio entre as diversas moedas variam a todo instante. Essas varia
 
 ![Câmbio](Imagens/Câmbio.png)
 
-Na Figura 2 temos o histórico das projeções de câmbio das 150 instituições participantes do Boletim Focus. De acordo com o ocorrido na Figura 1, nem todas as instituições participantes possuem um histórico de projeções longo, portanto, o mesmo processo foi realizado para a variável de câmbio. 
+Na Figura 2 temos o histórico das projeções de câmbio das 150 instituições participantes do Boletim Focus.
 
 ### Índice de Preços ao Consumidor Amplo - IPCA
 
@@ -63,8 +63,6 @@ O sistema abrange as regiões metropolitanas do Rio de Janeiro, Porto Alegre, Be
 A população-objetivo do IPCA é referente a famílias residentes nas áreas urbanas das regiões de abrangência do SNIPC com rendimentos de 1 (hum) e 40 (quarenta) salários-mínimos, qualquer que seja a fonte de rendimentos. A Pesquisa é realizada em estabelecimentos comerciais, prestadores de serviços, domicílios e concessionárias de serviços públicos mensalmente.
 
 ![IPCA](Imagens/IPCA.png)
-
-De acordo com o ocorrido na Figura 1, nem todas as instituições participantes do Boletim Focus possuem um histórico de projeções longo, portanto, o mesmo processo foi realizado para a variável de IPCA. 
 
 ### Surpresa de política monetária
 
@@ -109,9 +107,45 @@ As variáveis dependentes estão medidas em variação pois o interesse aqui nã
 
 ### Metodologias para estimação
 
-- MQO Agrupado
-- Modelo com efeitos fixos
-- Modelo com efeitos aleatórios
+O primeiro passo é a escolha do modelo que melhor se adequa a nossa amostra de dados. Nota-se que, nesta base que será trabalhada, os dados de cada instituição aparecem “empilhados”, uma vez que a variável referente à data da observação (`Data`) está repetida para cada observação da referida instituição (corte transversal repetido em diversos períodos de tempo). Desta forma, a nossa amostra possui dados em diferentes períodos de tempo para cada instituição, se constituindo em um painel desequilibrado. Em virtude da interação de variáveis individuais (`Instituicao`) com a série temporal (`Data`), occore a elevação da complexidade da análise. Desta forma, várias possibilidades de análise de modelos de regressão surgem, dentre elas:
+
+- MQO Agrupado;
+- Modelo com efeitos fixos;
+- Modelo com efeitos aleatórios.
+
+#### MQO Agrupado
+
+Este modelo trata de “empilhar” todas as observações da base de dados, ignorando a estrutura de dados em painel. Desta forma, todas as observações são tratadas como não correlacionadas para os indivíduos, com erros homoscedásticos para com os indivíduos. Trata-se, portanto, da forma mais simplista e ingênua pois desconsidera as dimensões de tempo e espaço combinados, ao mesmo tempo que estima a regressão pelo método dos Mínimos Quadrados Ordinários (MQO).
+
+$$
+y_{it} = \beta_1 + \beta_2 X_{2it} + \beta_3 X_{3it} + \varepsilon_t_{it}
+$$
+
+Onde $i$ corresponde à $i$-nésima unidade de corte transversal e $t$ o $t$-nésimo período de tempo.
+
+#### Modelo com efeitos fixos
+
+O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo (`Instituicao`) e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
+
+$$
+y_{it} = \beta_0 \sum_{j=1}^k \beta_j X_j_it + c_2I_2_j + \textrm{...} + c_nI_n_i + \varepsilon_{it}
+$$
+
+Onde $i_{ji} = 1$ se $j = i$, I_{ji} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.
+
+#### Modelo com efeitos aleatórios
+
+O modelo com efeitos aleatórios pressupõe que os efeitos individuais estejam aleatóriamente distribuídos em torno de uma média $\beta_0$ constante. Desta forma: 
+
+$$
+y_{it} = \beta_0 + \beta_1 X_{it} + w_{it}
+$$
+
+onde $w_{it} = c_i + \varepsilon_{it}$. O modelo com efeitos aleatórios também é chamado de modelo de correção de erros, justamente por considerar que o erro composto $w_{it}$
+possa, na verdade, ser desagregado em dois componentes:
+
+1. variação entre indivíduos; 
+2. variação geral entre observações.
 
 >  **Observação!**
 >
