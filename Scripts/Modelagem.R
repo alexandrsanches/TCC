@@ -10,7 +10,7 @@ switch (Sys.info()["sysname"],
 library(rio)
 library(plm)
 
-# Obtenção e formatação dos dados ----
+# ObtenÃ§Ã£o e formataÃ§Ã£o dos dados ----
 
 base <- import("Dados/base_regressao.rds")
 base <- pdata.frame(base, index = c("Instituicao","Data"))
@@ -26,7 +26,7 @@ names(base) <- c("data", "data_previsao", "data_reuniao", "reuniao", "instituica
 reg.agrupada.selic <- plm(expect_selic ~ surpresa, data = base, model = "pooling")
 summary(reg.agrupada.selic)
 
-### Expectativas do câmbio ----
+### Expectativas do cÃ¢mbio ----
 
 reg.agrupada.cambio <- plm(expect_cambio ~ surpresa, data = base, model = "pooling")
 summary(reg.agrupada.cambio)
@@ -44,7 +44,7 @@ reg.ef.selic <- plm(expect_selic ~ surpresa, data = base, index = "data", model 
 summary(reg.ef.selic)
 summary(fixef(reg.ef.selic))
 
-### Expectativas do câmbio ----
+### Expectativas do cÃ¢mbio ----
 
 reg.ef.cambio <- plm(expect_cambio ~ surpresa, data = base, index = "data", model = "within")
 summary(reg.ef.cambio)
@@ -56,7 +56,7 @@ reg.ef.ipca <- plm(expect_ipca ~ surpresa, data = base, index = "data", model = 
 summary(reg.ef.ipca)
 summary(fixef(reg.ef.ipca))
 
-## Efeito aleatório ----
+## Efeito aleatÃ³rio ----
 
 ### Expectativas da Selic ----
 
@@ -64,7 +64,7 @@ reg.ea.selic <- plm(expect_selic ~ surpresa, data = base, index = "data", model 
                     random.method = "walhus")
 summary(reg.ea.selic)
 
-### Expectativas do câmbio ----
+### Expectativas do cÃ¢mbio ----
 
 reg.ea.cambio <- plm(expect_cambio ~ surpresa, data = base, index = "data", model = "random",
                      random.method = "walhus")
@@ -84,33 +84,33 @@ pFtest(reg.ef.selic, reg.agrupada.selic)
 pFtest(reg.ef.cambio, reg.agrupada.cambio)
 pFtest(reg.ef.ipca, reg.agrupada.ipca)
 
-## Modelo MQO agrupado x Modelo de Efeitos Aleatórios ----
+## Modelo MQO agrupado x Modelo de Efeitos AleatÃ³rios ----
 
 plmtest(reg.ef.selic, type = "bp")
 plmtest(reg.ef.cambio, type = "bp")
 plmtest(reg.ef.ipca, type = "bp")
 
-## Modelo Efeitos Fixos x Modelo de Efeitos Aleatórios ----
+## Modelo Efeitos Fixos x Modelo de Efeitos AleatÃ³rios ----
 
 phtest(reg.ef.selic, reg.ea.selic)
 phtest(reg.ef.cambio, reg.ea.cambio)
 phtest(reg.ef.ipca, reg.ea.ipca)
 
-# Diagnósticos dos modelos selecionados ----
+# DiagnÃ³sticos dos modelos selecionados ----
 
-## Dependência transversal ----
+## DependÃªncia transversal ----
 
 pcdtest(reg.ea, test="cd")
 
-## Normalidade dos resíduos ----
+## Normalidade dos resÃ­duos ----
 
 shapiro.test(reg.ea$residuals)
 
-## Homocedasticidade dos resíduos ----
+## Homocedasticidade dos resÃ­duos ----
 
 bptest(reg.ea)
 
-## Correlação serial ----
+## CorrelaÃ§Ã£o serial ----
 
 pbgtest(reg.ea) 
 
@@ -122,6 +122,6 @@ pwtest(reg.pooled)
 ### Tempo ----
 pwtest(reg.pooled, effect = "time") 
 
-## Raiz unitária ----
+## Raiz unitÃ¡ria ----
 adf.test(base$Surpresa, k = 2)
 
