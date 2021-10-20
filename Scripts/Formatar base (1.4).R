@@ -25,9 +25,9 @@ base_mensal <- import("Dados/base_mensal.rds")
 
 # Clean data ----
 
-## CÃ¢mbio ----
+## Câmbio ----
 cambio <- base_mensal %>%
-  filter(Indicador == "CÃ¢mbio",
+  filter(Indicador == "Câmbio",
          Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(Cambio = Valor)
@@ -55,7 +55,7 @@ base <- base %>%
   mutate(Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - (SELIC - dplyr::lag(SELIC)),
          Instituicao = factor(Instituicao))
 
-### Filtrar instituiÃ§Ãµes com poucas projeÃ§Ãµes ----
+### Filtrar instituições com poucas projeções ----
 instituicoes <- base %>% 
   group_by(Instituicao) %>%
   distinct(Reuniao) %>%
@@ -71,7 +71,7 @@ base %>%
   count()
 
 base <- base %>%
-  filter(Instituicao %in% instituicoes) %>%
+  filter(Instituicao %in% instituicoes)
   
 rm(base_mensal,
    cambio,
@@ -111,7 +111,7 @@ reg.ef <- plm(SELIC ~ Surpresa,
 summary(reg.ef)
 summary(fixef(reg.ef))
 
-## Efeito aleatÃ³rio ----
+## Efeito aleatório ----
 reg.ea <- plm(SELIC ~ Surpresa,
               data = base,
               index = "Data",
@@ -120,29 +120,29 @@ reg.ea <- plm(SELIC ~ Surpresa,
 
 summary(reg.ea)
 
-# ComparaÃ§Ã£o entre modelos ----
+# Comparação entre modelos ----
 
 ## Modelo Pooled x Modelo de Efeitos Fixos ----
 pFtest(reg.ef,reg.pooled)
 
-## Modelo Pooled x Modelo de Efeitos AleatÃ³rios ----
+## Modelo Pooled x Modelo de Efeitos Aleatórios ----
 plmtest(reg.pooled, type = "bp")
 
-## Modelo Efeitos Fixos x Modelo de Efeitos AleatÃ³rios ----
+## Modelo Efeitos Fixos x Modelo de Efeitos Aleatórios ----
 phtest(reg.ef,reg.ea)
 
 # Testes para o modelo ----
 
-## DependÃªncia transversal ----
+## Dependência transversal ----
 pcdtest(reg.ea, test="cd")
 
-## Normalidade dos resÃ­duos ----
+## Normalidade dos resíduos ----
 shapiro.test(reg.ea$residuals)
 
-## Homocedasticidade dos resÃ­duos ----
+## Homocedasticidade dos resíduos ----
 bptest(reg.ea)
 
-## CorrelaÃ§Ã£o serial ----
+## Correlação serial ----
 pbgtest(reg.ea) 
 
 ## Efeitos individuais ou de tempo ----
@@ -153,6 +153,6 @@ pwtest(reg.pooled)
 ### Tempo ----
 pwtest(reg.pooled, effect = "time") 
 
-## Raiz unitÃ¡ria ----
+## Raiz unitária ----
 adf.test(base$Surpresa, k = 2)
 
