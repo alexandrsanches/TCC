@@ -12,7 +12,6 @@ library(tidyverse)
 library(lubridate)
 library(plm)
 library(lattice)
-library(latticeExtra)
 
 # Import data ----
 
@@ -22,25 +21,35 @@ copom <- import("Dados/copom.rds") %>%
   select(Reuniao, MetaSelic)
 
 ## Bases mensais e anuais ----
-base_mensal <- import("Dados/base_mensal.rds")
-#base_anual <- import("Dados/base_anual.rds")
+#base_mensal <- import("Dados/base_mensal.rds")
+base_anual <- import("Dados/base_anual.rds")
 
 # Clean data ----
 
 ## Câmbio ----
-cambio <- base_mensal %>%
-  filter(Indicador == "Câmbio") %>%
+cambio <- base_anual %>%
+  filter(IndicadorDetalhe == "Taxa de câmbio - Taxa no fim do ano",
+         Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
-  rename(Cambio = Valor)
+  rename(Cambio = Valor) %>%
+  group_by(Instituicao, Data) %>%
+  complete(DataReferencia = seq.Date(from = min(DataReferencia), to = max(DataReferencia) + 11, by = "month")) %>%
+  fill(c(Cambio, DataReferencia), .direction = "down")
+
+export(cambio, file = "Dados/Arquivos intermediários/cambio.rds")
 
 ## IPCA ----
-ipca <- base_mensal %>%
-  filter(Indicador == "IPCA") %>%
+ipca <- base_anual %>%
+  filter(IndicadorDetalhe == "IPCA") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
-  rename(IPCA = Valor)
+  rename(IPCA = Valor) %>%
+  complete(DataReferencia = seq.Date(from = min(DataReferencia), to = max(DataReferencia) + 11, by = "month")) %>%
+  fill(c(IPCA, DataReferencia), .direction = "down")
+
+export(ipca, file = "Dados/Arquivos intermediários/ipca.rds")
 
 ## Base final ----
-base <- base %>%
+teste <- base %>%
   mutate_at(vars(contains("Data")), as_date) %>%
   left_join(copom) %>%
   filter(month(DataReferencia) == month(DataReuniao) &
@@ -63,6 +72,11 @@ instituicoes <- base %>%
   filter(n > 30) %>%
   pull(Instituicao)
 
+base %>%
+  filter(Instituicao %in% instituicoes) %>%
+  distinct(Instituicao) %>%
+  count()
+
 base <- base %>%
   filter(Instituicao %in% instituicoes) %>%
   
@@ -72,7 +86,7 @@ rm(base_mensal,
    ipca)
 
 # Generate charts ----
-plot1 <- xyplot(IPCA ~ Data | Instituicao, 
+xyplot(IPCA ~ Data | Instituicao, 
                 base, 
                 type = "l", 
                 as.table = TRUE,
@@ -80,9 +94,7 @@ plot1 <- xyplot(IPCA ~ Data | Instituicao,
                 lwd = 2,
                 col = "#084184",
                 ylab = "", 
-                xlab = "")
-
-plot1
+                xlab = "Data")
 
 # Regressions ----
 base <- pdata.frame(base,

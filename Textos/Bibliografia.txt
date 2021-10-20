@@ -58,16 +58,16 @@ url = {https://EconPapers.repec.org/RePEc:fip:fedlrv:y:2002:i:jul:p:65-94:n:v.84
 }
 
 @ARTICLE{article,
-author = {Tabak, Benjamin and Tabata, AlÌcia},
+author = {Tabak, Benjamin and Tabata, Alícia},
 year = {2004},
 month = {01},
 pages = {},
-title = {Testando O Conte˙do Informacional Das Decisıes De PolÌtica Monet·ria}
+title = {Testando O Conteúdo Informacional Das Decisões De Política Monetária}
 }
 
 @TechReport{RePEc:bcb:wpaper:238,
   author={Fernando N. de Oliveira and Leonardo Ramos},
-  title={{Choques n„o Antecipados de PolÌtica Monet·ria e a Estrutura a Termo das Taxas de Juros no Brasil}},
+  title={{Choques não Antecipados de Política Monetária e a Estrutura a Termo das Taxas de Juros no Brasil}},
   year=2011,
   institution={Central Bank of Brazil, Research Department},
   type={Working Papers Series},
@@ -80,8 +80,8 @@ title = {Testando O Conte˙do Informacional Das Decisıes De PolÌtica Monet·ria}
 
 @Article{RePEc:abg:anprac:v:4:y:2000:i:2:91,
   author={Fernanda F. Cordeiro Perobelli and Fernando S. Perobelli and Marcelo Aarestrup Arbex},
-  title={{Expectativas racionais e eficiÍncia informacional: an·lise do mercado acion·rio brasileiro no perÌodo 1997-1999}},
-  journal={RAC - Revista de AdministraÁ„o Contempor‚nea (Journal of Contemporary Administration)},
+  title={{Expectativas racionais e eficiência informacional: análise do mercado acionário brasileiro no período 1997-1999}},
+  journal={RAC - Revista de Administração Contemporânea (Journal of Contemporary Administration)},
   year=2000,
   volume={4},
   number={2},
@@ -115,8 +115,8 @@ url = {https://EconPapers.repec.org/RePEc:nbr:nberch:3011}
 }
 
 @inproceedings{inproceedings7f0fe8d7,
-title   = {Choques antecipados de polÌtica monet·ria: uma investigaÁ„o para a economia brasileira},
-author = {Pereira, Robson Rodrigues and Nakane, M·rcio I},
+title   = {Choques antecipados de política monetária: uma investigação para a economia brasileira},
+author = {Pereira, Robson Rodrigues and Nakane, Márcio I},
 year = {2019},
 publisher = {ANPEC},
 booktitle   = {Encontro Nacional de Economia}
@@ -152,9 +152,9 @@ url = {https://EconPapers.repec.org/RePEc:nbr:nberwo:18686}
 }
 
 @mastersthesis{
-  title = {Surpresas com relaÁ„o ‡ polÌtica monet·ria e o mercado de capitais: evidÍncias do caso brasileiro}
-  author = {Walter GonÁalves Junior},
+  title = {Surpresas com relação à política monetária e o mercado de capitais: evidências do caso brasileiro}
+  author = {Walter Gonçalves Junior},
   year = {2007},
-  institution = { FGV - FundaÁ„o Get˙lio Vargas},
+  institution = { FGV - Fundação Getúlio Vargas},
   url = {http://bdtd.ibict.br/vufind/Record/FGV_ce491e71b1dc607563ed07d32b2aade4}
 }
