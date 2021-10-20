@@ -21,45 +21,38 @@ copom <- import("Dados/copom.rds") %>%
   select(Reuniao, MetaSelic)
 
 ## Bases mensais e anuais ----
-#base_mensal <- import("Dados/base_mensal.rds")
-base_anual <- import("Dados/base_anual.rds")
+base_mensal <- import("Dados/base_mensal.rds")
 
 # Clean data ----
 
 ## Câmbio ----
-cambio <- base_anual %>%
-  filter(IndicadorDetalhe == "Taxa de câmbio - Taxa no fim do ano",
+cambio <- base_mensal %>%
+  filter(Indicador == "Câmbio",
          Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
-  rename(Cambio = Valor) %>%
-  group_by(Instituicao, Data) %>%
-  complete(DataReferencia = seq.Date(from = min(DataReferencia), to = max(DataReferencia) + 11, by = "month")) %>%
-  fill(c(Cambio, DataReferencia), .direction = "down")
-
-export(cambio, file = "Dados/Arquivos intermediários/cambio.rds")
+  rename(Cambio = Valor)
 
 ## IPCA ----
-ipca <- base_anual %>%
-  filter(IndicadorDetalhe == "IPCA") %>%
+ipca <- base_mensal %>%
+  filter(Indicador == "IPCA",
+         Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
-  rename(IPCA = Valor) %>%
-  complete(DataReferencia = seq.Date(from = min(DataReferencia), to = max(DataReferencia) + 11, by = "month")) %>%
-  fill(c(IPCA, DataReferencia), .direction = "down")
-
-export(ipca, file = "Dados/Arquivos intermediários/ipca.rds")
+  rename(IPCA = Valor)
 
 ## Base final ----
-teste <- base %>%
+base <- base %>%
   mutate_at(vars(contains("Data")), as_date) %>%
   left_join(copom) %>%
   filter(month(DataReferencia) == month(DataReuniao) &
-           year(DataReferencia) == year(DataReuniao)) %>%
+           year(DataReferencia) == year(DataReuniao),
+         Data == DataReuniao - 1) %>%
   left_join(ipca) %>%
   left_join(cambio) %>%
   rename(SELIC = Valor) %>%
   relocate(where(is.numeric), .after = where(is.Date)) %>%
   relocate(Reuniao, .before = Instituicao) %>%
-  mutate(Surpresa = MetaSelic - SELIC,
+  group_by(Instituicao) %>%
+  mutate(Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - (SELIC - dplyr::lag(SELIC)),
          Instituicao = factor(Instituicao))
 
 ### Filtrar instituições com poucas projeções ----
@@ -84,6 +77,8 @@ rm(base_mensal,
    cambio,
    copom,
    ipca)
+
+export(base, file = "Dados/base_regressao.rds")
 
 # Generate charts ----
 xyplot(IPCA ~ Data | Instituicao, 
