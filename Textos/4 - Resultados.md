@@ -1,5 +1,7 @@
 # Resultados
 
+## Sinais esperados
+
 >Conforme Gonçalves & Junior (2011), espera-se que o coeficiente da surpresa seja significativo a 1% e apresente sinal negativo.
 >
 >Em Oliveira & Ramos (2011) o coeficiente do componente não esperado (choque de política monetária) apresenta sinal negativo em todas as maturidades analisadas (2, 3, 6, 9, 12, 15, 18 e 24 meses).
@@ -8,9 +10,17 @@
 >
 >Kuttner (2001), apresentando uma extensão da equação de Cook & Hahn (1989), chega a um resultado em linha com os anteriores, apresentando os coeficientes da surpresa de política monetária negativos. Entretanto, sua significância estatística é baixa, o que é justificado pelo número pequeno de observações de sua amostra.
 
+## Escolha do método econométrico
 
+| Hipótese                                            | Teste utilizado                               | Resultado |
+| --------------------------------------------------- | --------------------------------------------- | --------- |
+| Modelo MQO agrupado x Modelo de Efeitos Fixos       | F Test for Individual and/or Time Effects     |           |
+| Modelo MQO agrupado x Modelo de Efeitos Aleatórios  | Lagrange FF Multiplier Tests for Panel Models |           |
+| Modelo Efeitos Fixos x Modelo de Efeitos Aleatórios | Hausman Test for Panel Models                 |           |
 
+## Parâmetros estimados
 
+## Diagnósticos dos modelos selecionados
 
 > **O que podemos fazer:**
 >
