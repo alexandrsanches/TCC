@@ -12,13 +12,15 @@ Kuttner (2001), apresentando uma extensão da equação de Cook & Hahn (1989), c
 
 ## Escolha do método econométrico
 
-Para efetuarmos a escolha do modelo que melhor se adequa aos dados, utilizaremos alguns testes. Os model
+Para efetuarmos a escolha do modelo que melhor se adequa aos dados, utilizaremos alguns testes que se seguem abaixo:
 
 | Pergunta                            | Teste utilizado                               | Hipótese nula          | Resultado                              |
 | ----------------------------------- | --------------------------------------------- | ---------------------- | -------------------------------------- |
 | MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries |
 | MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries |
 | Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor | Hipótese rejeitada para as três séries |
+
+De acordo com o resultado apresentado acima, o modelo que melhor se adequa aos nossos propósitos é o modelo de efeitos aleatórios.
 
 ## Parâmetros estimados
 
