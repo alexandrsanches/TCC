@@ -12,11 +12,11 @@
 
 ## Escolha do método econométrico
 
-| Hipótese                                            | Teste utilizado                               | Resultado |
-| --------------------------------------------------- | --------------------------------------------- | --------- |
-| Modelo MQO agrupado x Modelo de Efeitos Fixos       | F Test for Individual and/or Time Effects     |           |
-| Modelo MQO agrupado x Modelo de Efeitos Aleatórios  | Lagrange FF Multiplier Tests for Panel Models |           |
-| Modelo Efeitos Fixos x Modelo de Efeitos Aleatórios | Hausman Test for Panel Models                 |           |
+| Pergunta                            | Teste utilizado                               | Hipótese nula          | Resultado |
+| ----------------------------------- | --------------------------------------------- | ---------------------- | --------- |
+| MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  |           |
+| MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models |                        |           |
+| Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor |           |
 
 ## Parâmetros estimados
 
