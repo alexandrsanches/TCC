@@ -15,7 +15,7 @@ library(plm)
 base <- import("Dados/base_regressao.rds")
 base <- pdata.frame(base, index = c("Instituicao","Data"))
 names(base) <- c("data", "data_previsao", "data_reuniao", "reuniao", "instituicao", "expect_selic",
-                 "meta_selic", "expect_ipca", "expect_cambio", "surpresa"  )
+                 "meta_selic", "expect_ipca", "expect_cambio", "surpresa")
 
 # Modelagem ----
 
