@@ -2,10 +2,11 @@
 
 > **O que já dá para fazer?**
 >
-> - Dizer qual a amostra foi utilizada na análise;
+> - ~~Dizer qual a amostra foi utilizada na análise~~;
 > - Justificar o motivo de ter usado essa amostra;
 > - ~~Descrever a base de dados~~;
-> - Colocar os gráficos das séries utilizadas.
+> - Colocar os gráficos das séries utilizadas;
+> - Colocar o endereço da pesquisa Focus no campo **URL** do primeiro parágrafo!
 
 Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em <**url**>), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
 
@@ -19,17 +20,17 @@ O Boletim Focus divulga as projeções individuais informadas pelos participante
 
 Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim Focus, contendo o código identificador da instituição, o indicador projetado, a data onde a projeção foi realizada, o mês de referência dessa projeção, a data da reunião do Copom correspondente à projeção e a meta da taxa Selic definida na reunião. Usamos as projeções anualizadas, ou seja, a projeção realizada no mês $t$ refere-se ao ano corrente daquele mês. Utilizaremos as projeções das seguintes variáveis:
 
-| Variável                             | Abreviação | Período           |
-| ------------------------------------ | ---------- | ----------------- |
-| Taxa básica de juros                 | $selic$    | 2003:01 - 2020:12 |
-| Taxa nominal de câmbio               | $cambio$   | 2003:01 - 2020:12 |
-| Índice de Preços ao Consumidor Amplo | $ipca$     | 2003:01 - 2020:12 |
+| Variável                             | Abreviação | Período                            |
+| ------------------------------------ | ---------- | ---------------------------------- |
+| Taxa básica de juros                 | $selic$    | janeiro de 2003 a dezembro de 2020 |
+| Taxa nominal de câmbio               | $cambio$   | janeiro de 2003 a dezembro de 2020 |
+| Índice de Preços ao Consumidor Amplo | $ipca$     | janeiro de 2003 a dezembro de 2020 |
 
 Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 
 
-Visto que, na literatura, outros ensaios buscam verificar como uma surpresa de política monetária impacta o mercado de capitais ou as taxas de juros de mercado e utilizam-se de medidas de tendência central, como a média de fim de período ou, mais comumente, a mediana, com essa amostra de dados, será possível verificar como as instituições alteram, historicamente, suas projeções quando ocorre uma surpresa de política monetária.
+Visto que, na literatura, outros trabalhos buscam verificar como uma surpresa de política monetária impacta o mercado de capitais ou as taxas de juros de mercado e utilizam-se de medidas de tendência central, como a média de fim de período ou, mais comumente, a mediana, com essa amostra de dados, será possível verificar como as instituições alteram, historicamente, suas projeções quando ocorre uma surpresa de política monetária.
 
-Para atingir os objetivos deste ensaio, utilizaremos a base de microdados em painel, visto que  modelo de regressão com dados em painel possui uma característica especial: se constitui de uma dimensão *temporal* e outra *espacial*. Isto porque a mesma unidade de corte transversal é acompanhada ao longo do tempo. Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.
+Para atingir os objetivos deste trabalho, utilizaremos a base de microdados em painel, visto que  modelo de regressão com dados em painel possui uma característica especial: se constitui de uma dimensão *temporal* e outra *espacial*. Isto porque a mesma unidade de corte transversal é acompanhada ao longo do tempo. Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.
 
 ### Taxa básica de juros - Selic
 
@@ -71,52 +72,47 @@ De acordo com Pereira & Nakane (2019):
 
 > Choques de política monetária podem ser definidos, de forma mais ampla, como desvios na tomada de decisões de juros em relação à parte sistemática de determinada regra de reação do banco central (BC). 
 
-Portanto, a surpresa de política monetária é definida como sendo a diferença entre a variação da meta Selic (definida pelo Copom) e a variação esperada pela instituição:
+Portanto, uma definição possível para a surpresa de política monetária seria a diferença entre a variação da meta Selic (definida pelo Copom) e a variação esperada pela instituição. Dito de outra forma, a surpresa seria o erro de previsão de uma dada instituição. Isso pode ser representado algebricamente da seguinte forma:
 
 $$
 surpresa_{i,t} = \Delta selic^{meta}_t - \Delta selic^{prevista}_{i,t-1}
 $$
 
-Onde $surpresa_{i,t}$ representa a supresa da instituição $i$ no tempo $t$, $\Delta selic^{meta}_t$ representa a diferença entre os valores da meta da Selic entre as reuniões ocorridas entre $t$ e $t-1$ e $\Delta selic^{prevista}_{i,t-1}$ representa a diferença entre os valores previstos da Selic pela instituição $i$ entre as reuniões ocorridas entre $t$ e $t-1$ .
+Onde $surpresa_{i,t}$ representa a supresa da instituição $i$ no tempo $t$, $\Delta selic^{meta}_t$ representa a diferença entre os valores da meta da Selic entre as reuniões ocorridas entre $t$ e $t-1$ e $\Delta selic^{prevista}_{i,t-1}$ representa a diferença entre os valores previstos da Selic pela instituição $i$ entre as reuniões ocorridas entre $t$ e $t-1$ . A variável surpresa pode ser interpretada da seguinte forma:
+
+| Sinal da surpresa    | Interpretação                                        |
+| -------------------- | ---------------------------------------------------- |
+| $surpresa_{i,t} > 0$ | indica que a decisão do Copom foi acima da esperada  |
+| $surpresa_{i,t} = 0$ | indica que a decisão do Copom foi igual a esperada   |
+| $surpresa_{i,t} < 0$ | indica que a decisão do Copom foi abaixo da esperada |
 
 ## Estratégia econométrica
 
-> **O que podemos fazer:**
->
-> - Detalhar a construção da surpresa;
-> - Mostrar o impacto da surpresa sobre as previsões Focus;
-> - Verificar se há diferença nas alterações das previsões nos momentos onde há surpresa *versus* comentos sem surpresa;
-> - Comparar a surpresa que você está propondo com uma medida mais tradicional de choque;
+Dada a própria natureza dos microdados do Focus, onde há o registro das previsões de várias instituições ao longo do tempo, para atingir os objetivos deste trabalho, serão utilizadas técnicas de regressão para dados em painel, visto que os modelos de regressão com dados em painel possuem uma característica especial: levam em consideração a dimensão *tempo* e a *indivíduo*. Ou seja, a mesma unidade de corte transversal é acompanhada ao longo do tempo.
 
-> **Observações:**
->
-> - A surpresa também pode ser chamada de *choque de política monetária*;
-> - Certamente utilizaremos regressões para dados em painel;
-> - Tenho um material explicando de forma intuitiva as diferenças entre regressões com painéis com efeitos fixos e aleatórios;
-> - Se ficarmos sem tempo podemos usar o Gretl para essas estimações;
-> - Testaremos individualmente se a surpresa afeta as previsões das outras variáveis (Selic, IPCA e câmbio)
-> - A medida mais tradicional de choque seria simplesmente estimar uma **Regra de Taylor** para a Selic e usar os resíduos dessa equação como sendo os choques não antecipados (ou seja, a surpresa). Isso é fácil fazer.
+Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.
 
 ### Especificação dos modelos
 
+Para a verificação do impacto da surpresa monetária sobre as previsões do mercado serão estimadas as seguintes equações:
 $$
-\Delta selic^{prevista}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t
+\Delta selic^{prevista}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t\\
 $$
-
 $$
-\Delta ipca^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+\Delta ipca^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t
 $$
-
 $$
 \Delta cambio^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t
 $$
 
 As variáveis dependentes estão medidas em variação pois o interesse aqui não são os níveis. O interesse é verificar se esses níveis são alterados em resposta à surpresa.
 
->Conforme Gonçalves & Junior (2011), espera-se que o coeficiente da surpresa seja significativo a 1% e apresente sinal negativo.
+### Metodologias para estimação
+
+- MQO Agrupado
+- Modelo com efeitos fixos
+- Modelo com efeitos aleatórios
+
+>  **Observação!**
 >
->Em Oliveira & Ramos (2011) o coeficiente do componente não esperado (choque de política monetária) apresenta sinal negativo em todas as maturidades analisadas (2, 3, 6, 9, 12, 15, 18 e 24 meses).
->
->Zabot, Caetano & Caldeira (2013) indicam que as taxas de juros de DI futuro respondem à mudanças não esperadas na Meta Selic, também apresentando coeficiente negativo. No entanto, seus coeficientes dos títulos de menor maturidade são relativamente baixos em comparação ao exposto, por exemplo, em Tabak (2004), possivelmente sendo explicados pelo aumento da capacidade de antecipação das instituições das ações do Bacen.
->
->Kuttner (2001), apresentando uma extensão da equação de Cook & Hahn (1989), chega a um resultado em linha com os anteriores, apresentando os coeficientes da surpresa de política monetária negativos. Entretanto, sua significância estatística é baixa, o que é justificado pelo número pequeno de observações de sua amostra.
+> A escolha entre esses métodos vai depender dos testes estatísticos que faremos
