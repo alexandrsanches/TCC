@@ -46,7 +46,9 @@ base <- base %>%
   relocate(where(is.numeric), .after = where(is.Date)) %>%
   relocate(Reuniao, .before = Instituicao) %>%
   group_by(Instituicao) %>%
-  mutate(Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - (SELIC - dplyr::lag(SELIC)),
+  mutate(Cambio = Cambio - dplyr::lag(Cambio),
+         SELIC = SELIC - dplyr::lag(SELIC),
+         Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - SELIC,
          Instituicao = factor(Instituicao))
 
 ### Filtrar instituições com poucas projeções ----
