@@ -13,6 +13,9 @@ library(lubridate)
 library(lattice)
 
 # Import data ----
+base <- import("Dados/base_final.rds")
+copom <- import("Dados/copom.rds") %>%
+  select(Reuniao, MetaSelic)
 
 ## Bases mensais e anuais ----
 base_mensal <- import("Dados/base_mensal.rds")
