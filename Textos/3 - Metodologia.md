@@ -39,7 +39,7 @@ O nome da taxa Selic vem da sigla do Sistema Especial de Liquidação e de Cust�
 
 O sistema Selic é fundamental em possíveis casos de falência ou insolvência de instituições financeiras. A liquidação em tempo real e o registro das transações com títulos públicos federais em seu banco de dados pode coibir fraudes e prevenir o contágio em outras instituições. Esta série será utilizada como base para o cálculo da surpresa de política monetária.
 
-![Selic](/Users/alexandresanches/OneDrive/TCC/Textos/Imagens/Selic.png)
+![Selic](Imagens/Selic.png)
 
 Na Figura 1 é possível verificar o histórico de projeções da Selic de cada uma das 150 instituições participantes do Boletim Focus. Naturalmente, todas tem um viés descendente, dado que a Meta Selic teve uma considerável queda ao longo das últimas duas décadas. Como pôde ser observado, nem todas as instituições participantes do Boletim Focus tem um histórico de projeções longo, portanto, um filtro será aplicado para que a instituição tenha realizado projeções de, pelo menos, 40 reuniões. Com isso, a regressão em painel ficará menos desbalanceada. 
 
@@ -49,7 +49,7 @@ Taxa de câmbio nominal é a taxa que expressa a relação de valor entre duas m
 
 As taxas de câmbio entre as diversas moedas variam a todo instante. Essas variações são denominadas de apreciação nominais ou depreciação nominais. A apreciação de uma moeda domestica é o aumento do seu preço em relação à outra estrangeira e a depreciação, de maneira inversa, significa que o preço da moeda nacional em relação à estrangeira esta caindo.
 
-![Câmbio](/Users/alexandresanches/OneDrive/TCC/Textos/Imagens/Câmbio.png)
+![Câmbio](Imagens/Câmbio.png)
 
 Na Figura 2 temos o histórico das projeções de câmbio das 150 instituições participantes do Boletim Focus. De acordo com o ocorrido na Figura 1, nem todas as instituições participantes possuem um histórico de projeções longo, portanto, o mesmo processo foi realizado para a variável de câmbio. 
 
@@ -61,7 +61,7 @@ O sistema abrange as regiões metropolitanas do Rio de Janeiro, Porto Alegre, Be
 
 A população-objetivo do IPCA é referente a famílias residentes nas áreas urbanas das regiões de abrangência do SNIPC com rendimentos de 1 (hum) e 40 (quarenta) salários-mínimos, qualquer que seja a fonte de rendimentos. A Pesquisa é realizada em estabelecimentos comerciais, prestadores de serviços, domicílios e concessionárias de serviços públicos mensalmente.
 
-![IPCA](/Users/alexandresanches/OneDrive/TCC/Textos/Imagens/IPCA.png)
+![IPCA](Imagens/IPCA.png)
 
 De acordo com o ocorrido na Figura 1, nem todas as instituições participantes do Boletim Focus possuem um histórico de projeções longo, portanto, o mesmo processo foi realizado para a variável de IPCA. 
 
