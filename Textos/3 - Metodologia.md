@@ -99,11 +99,24 @@ Onde $surpresa_{i,t}$ representa a supresa da instituição $i$ no tempo $t$, $\
 
 ### Especificação dos modelos
 
-$\Delta selic^{prevista}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+$$
+\Delta selic^{prevista}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t
+$$
 
-$\Delta ipca^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+$$
+\Delta ipca^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+$$
 
-$\Delta cambio^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t$
+$$
+\Delta cambio^{previsto}_{i,t} = \beta_0 + \beta_1 surpresa_{i,t} + \varepsilon_t
+$$
 
+As variáveis dependentes estão medidas em variação pois o interesse aqui não são os níveis. O interesse é verificar se esses níveis são alterados em resposta à surpresa.
 
-As variáveis dependentes estão medidas em variação pois o interesse aqui não são os níveis, o interesse é verificar se esses níveis são alterados em resposta à surpresa.
+>Conforme Gonçalves & Junior (2011), espera-se que o coeficiente da surpresa seja significativo a 1% e apresente sinal negativo.
+>
+>Em Oliveira & Ramos (2011) o coeficiente do componente não esperado (choque de política monetária) apresenta sinal negativo em todas as maturidades analisadas (2, 3, 6, 9, 12, 15, 18 e 24 meses).
+>
+>Zabot, Caetano & Caldeira (2013) indicam que as taxas de juros de DI futuro respondem à mudanças não esperadas na Meta Selic, também apresentando coeficiente negativo. No entanto, seus coeficientes dos títulos de menor maturidade são relativamente baixos em comparação ao exposto, por exemplo, em Tabak (2004), possivelmente sendo explicados pelo aumento da capacidade de antecipação das instituições das ações do Bacen.
+>
+>Kuttner (2001), apresentando uma extensão da equação de Cook & Hahn (1989), chega a um resultado em linha com os anteriores, apresentando os coeficientes da surpresa de política monetária negativos. Entretanto, sua significância estatística é baixa, o que é justificado pelo número pequeno de observações de sua amostra.

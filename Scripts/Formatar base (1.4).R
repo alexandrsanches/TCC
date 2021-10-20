@@ -16,9 +16,11 @@ library(lattice)
 # Import data ----
 
 ## Base final ----
-base <- import("Dados/base_final.rds")
-copom <- import("Dados/copom.rds") %>%
-  select(Reuniao, MetaSelic)
+#base <- import("Dados/base_final.rds")
+#copom <- import("Dados/copom.rds") %>%
+#  select(Reuniao, MetaSelic)
+
+base <- import("Dados/base_regressao.rds")
 
 ## Bases mensais e anuais ----
 base_mensal <- import("Dados/base_mensal.rds")
@@ -66,12 +68,12 @@ instituicoes <- base %>%
   pull(Instituicao)
 
 base %>%
-  filter(Instituicao %in% instituicoes) %>%
+  #filter(Instituicao %in% instituicoes) %>%
   distinct(Instituicao) %>%
   count()
 
 base <- base %>%
-  filter(Instituicao %in% instituicoes) %>%
+  filter(Instituicao %in% instituicoes)
   
 rm(base_mensal,
    cambio,
