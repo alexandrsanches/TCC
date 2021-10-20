@@ -19,9 +19,9 @@ base_mensal <- import("Dados/base_mensal.rds")
 
 # Clean data ----
 
-## Câmbio ----
+## CÃ¢mbio ----
 cambio <- base_mensal %>%
-  filter(Indicador == "Câmbio",
+  filter(Indicador == "CÃ¢mbio",
          Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(Cambio = Valor)
@@ -49,7 +49,7 @@ base <- base %>%
   mutate(Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - (SELIC - dplyr::lag(SELIC)),
          Instituicao = factor(Instituicao))
 
-### Filtrar instituições com poucas projeções ----
+### Filtrar instituiÃ§Ãµes com poucas projeÃ§Ãµes ----
 instituicoes <- base %>% 
   group_by(Instituicao) %>%
   distinct(Reuniao) %>%
