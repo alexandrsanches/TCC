@@ -25,11 +25,11 @@ Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim
 | Taxa nominal de câmbio               | $cambio$   | 2003:01 - 2020:12 |
 | Índice de Preços ao Consumidor Amplo | $ipca$     | 2003:01 - 2020:12 |
 
-Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. 
-
-Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 
+Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 
 
 Visto que, na literatura, outros ensaios buscam verificar como uma surpresa de política monetária impacta o mercado de capitais ou as taxas de juros de mercado e utilizam-se de medidas de tendência central, como a média de fim de período ou, mais comumente, a mediana, com essa amostra de dados, será possível verificar como as instituições alteram, historicamente, suas projeções quando ocorre uma surpresa de política monetária.
+
+Para atingir os objetivos deste ensaio, utilizaremos a base de microdados em painel, visto que  modelo de regressão com dados em painel possui uma característica especial: se constitui de uma dimensão *temporal* e outra *espacial*. Isto porque a mesma unidade de corte transversal é acompanhada ao longo do tempo. Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.
 
 ### Taxa básica de juros - Selic
 
