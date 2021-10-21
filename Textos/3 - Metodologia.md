@@ -110,7 +110,7 @@ O primeiro passo é a escolha do modelo que melhor se adequa a nossa amostra de 
 Este modelo trata de “empilhar” todas as observações da base de dados, ignorando a estrutura de dados em painel. Desta forma, todas as observações são tratadas como não correlacionadas para os indivíduos, com erros homoscedásticos para com os indivíduos. Trata-se, portanto, da forma mais simplista e ingênua pois desconsidera as dimensões de tempo e espaço combinados, ao mesmo tempo que estima a regressão pelo método dos Mínimos Quadrados Ordinários (MQO).
 
 $$
-y_{it} = \beta_1 + \beta_2 X_{2it} + \beta_3 X_{3it} + \varepsilon_{t_it}
+y_{it} = \beta_0 + \beta_1 + \beta_2 X_{2it} + \varepsilon_{t_it}
 $$
 
 Onde $i$ corresponde à $i$-nésima unidade de corte transversal e $t$ o $t$-nésimo período de tempo.
@@ -120,7 +120,7 @@ Onde $i$ corresponde à $i$-nésima unidade de corte transversal e $t$ o $t$-né
 O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
 
 $$
-y_{it} = \beta_0 \sum_{j=1}^k \beta_j X_{j_it} + c_2 I_{2_j} + \textrm{...} + c_n I_{n_i} + \varepsilon_{it}
+y_{it} = \beta_0 + \sum_{j=1}^k \beta_j X_{j_it} + c_2 I_{2_j} + \textrm{...} + c_n I_{n_i} + \varepsilon_{it}
 $$
 
 Onde $i_{ji} = 1$ se $j = i$, $ I_{ji} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.

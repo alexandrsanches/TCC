@@ -16,11 +16,17 @@ Para efetuarmos a escolha do modelo que melhor se adequa aos dados, utilizaremos
 
 | Pergunta                            | Teste utilizado                               | Hipótese nula          | Resultado                                                    |
 | ----------------------------------- | --------------------------------------------- | ---------------------- | ------------------------------------------------------------ |
-| MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  | Hipótese aceita para duas das três variáveis (Selic e Câmbio) |
-| MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries                       |
-| Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor | Hipótese rejeitada para as três séries                       |
+| MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  | Hipótese aceita para duas das três variáveis ($selic$ e $cambio$) |
+| MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models | MQO Agrupado é melhor  | Hipótese aceita para uma das três séries ($cambio$)          |
+| Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor | Hipótese aceita para duas das três séries ($selic$ e $cambio$) |
 
-De acordo com o resultado apresentado acima, o modelo que melhor se adequa aos nossos propósitos é o modelo de efeitos aleatórios.
+De acordo com o resultado apresentado acima, o modelo que melhor se adequa aos nossos propósitos é:
+
+| Variável | Modelo                        |
+| -------- | ----------------------------- |
+| $cambio$ | MQO Agrupado                  |
+| $ipca$   | Modelo com efeitos fixos      |
+| $selic$  | Modelo com efeitos aleatórios |
 
 ## Resultados das regressões via modelo com efeitos fixos
 
