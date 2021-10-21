@@ -28,21 +28,29 @@ De acordo com o resultado apresentado acima, o modelo que melhor se adequa aos n
 | $ipca$   | Modelo com efeitos fixos      |
 | $selic$  | Modelo com efeitos aleatórios |
 
-## Resultados das regressões via modelo com efeitos fixos
+## Resultados das regressões
 
 O modelo aqui proposto procura verificar como as instituições alteram suas projeções quando são surpreendidas por um choque não antecipado de política monetária (aqui chamado de surpresa de política monetária). Assim, a análise empírica baseia-se em regressões com uso das variáveis em primeira diferença como variáveis dependentes e o choque não antecipados de política monetária como regressores. A Tabela 3 ilutras os resultados:
 
-![Captura de Tela 2021-10-20 às 20.28.50](/Users/alexandresanches/Library/Application Support/typora-user-images/Captura de Tela 2021-10-20 às 20.28.50.png)
+Tabela 3
+
+As regressões foram executadas com 4646 observações para a variável $cambio$, 5194 para o $ipca$ e 5201 para a $selic$. Como dito anteriormente, trata-se de um modelo de regressão de painel desbalanceado, pelo fato de que nem todas as instituições possuem um logo histórico de projeções.
 
 No que se refere ao coeficiente de ajustamento $R^2$, observa-se que é relativamente baixo para todas as equações. Este resultado pode ser observado também em Tabak (2004), Tabata & Tabak (2004) e em Wu (2009). Conforme destacado em Zabot, Caetano & Caldeira (2013), ainda existe a dificuldade de se ajustar modelos cujas variáveis dependentes estão em primeira diferença.
 
 De acordo com o diagnóstico feito por Gonçalves & Junior (2011), os coeficientes da surpresa apresentam significância estatística ao intervalo de 1% e apresentam sinal negativo para todas as três equações. As reações das instituições, relativamente pequenas, podem ser explicadas pelo aumento da capacidade das instituições em, pelo menos parcialmente, antecipar as ações do Bacen. 
 
+Como os coeficientes da surpresa apresentam sinal negativo, isso indica que, em média, quando houve uma supresa de política monetária, a decisão do Copom foi abaixo do esperado. Como o Copom vem diminuindo a taxa de juros nos últimos anos, as instruções já esperam que irá ocorrer uma diminuição.
+
+Na Figura X é possível verificar os coeficientes de efeito aleatório ( $\beta_1$) de cada instituição para o modelo de efeitos aleatórios da $selic$, junto com a linha de tendência, demonstrando, portanto, a explicação do coeficiente negativo para a surpresa de política monetária em relação à $selic$. 
+
+![Coeficientes para SELIC](/Users/alexandresanches/OneDrive/TCC/Textos/Imagens/Coeficientes para SELIC.png)
+
 ## Diagnósticos dos modelos selecionados
 
 A dependência *cross-sectional* se apresenta em painéis com longas séries de tempo. A hipótese nula é de que os resíduos através dos indivíduos não estão correlacionados. Nossa amostra, para nenhum dos três modelos, aceita a hipótese nula do teste de Pesaran (2015), portanto, os dados estão correlacionados.
 
- O teste Breusch-Pagan (1979 é usado para testar a heteroscedasticidade em um modelo de regressão linear. A hipótese nula é a de que não há homocedasticidade nos resíduos. Apenas a expectativa da Selic aceita a hipótese nula, portanto, há problemas nos resíduos das outras duas regressões,  então, as variáveis apresentam problemas de heterocedasticidade. De acordo com Uchôa (2012), não é incomum que modelos de efeito fixo
+ O teste Breusch-Pagan (1979 é usado para testar a heteroscedasticidade em um modelo de regressão linear. A hipótese nula é a de que não há homocedasticidade nos resíduos. Apenas a  $selic$ aceita a hipótese nula, portanto, há problemas nos resíduos das outras duas regressões,  então, as variáveis apresentam problemas de heterocedasticidade. De acordo com Uchôa (2012), não é incomum que modelos de efeito fixo apresentem comportamento heterocedástico, que decorre naturalmente das diferenças individuais. 
 
 > **O que podemos fazer:**
 >
