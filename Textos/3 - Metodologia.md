@@ -1,6 +1,14 @@
 # Metodologia
 
-Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em [Boletim Focus](https://www.bcb.gov.br/publicacoes/focus)), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
+> **O que já dá para fazer?**
+>
+> - ~~Dizer qual a amostra foi utilizada na análise~~;
+> - Justificar o motivo de ter usado essa amostra;
+> - ~~Descrever a base de dados~~;
+> - Colocar os gráficos das séries utilizadas;
+> - Colocar o endereço da pesquisa Focus no campo **URL** do primeiro parágrafo!
+
+Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em <**url**>), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
 
 Os indicadores são compilados na sexta-feira anterior à publicação a partir de informações repassadas pelos principais bancos, agentes econômicos e instituições financeiras. As expectativas projetadas para o fechamento daquele ano são reunidas durante a semana e compiladas na sexta-feira. Os dados no relatório costumam ser apresentados em forma de tabela e em formato de gráfico. A tabela traz o comportamento dos indicadores na data de publicação do relatório, da semana anterior e do último mês. 
 
@@ -20,9 +28,9 @@ Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim
 
 Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 
 
-Visto que, na literatura, outros trabalhos buscam verificar como uma surpresa de política monetária impacta o mercado de capitais ou as taxas de juros de mercado e utilizam-se de medidas de tendência central, como a média de fim de período ou, mais comumente, a mediana, com essa amostra de dados, será possível verificar como as instituições alteram, historicamente, suas projeções quando ocorre uma surpresa de política monetária.
+~~Visto que, na literatura, outros trabalhos buscam verificar como uma surpresa de política monetária impacta o mercado de capitais ou as taxas de juros de mercado e utilizam-se de medidas de tendência central, como a média de fim de período ou, mais comumente, a mediana, com essa amostra de dados, será possível verificar como as instituições alteram, historicamente, suas projeções quando ocorre uma surpresa de política monetária.~~
 
-Para atingir os objetivos deste trabalho, utilizaremos a base de microdados em painel, visto que  modelo de regressão com dados em painel possui uma característica especial: se constitui de uma dimensão *temporal* e outra *espacial*. Isto porque a mesma unidade de corte transversal é acompanhada ao longo do tempo. Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.
+~~Para atingir os objetivos deste trabalho, utilizaremos a base de microdados em painel, visto que  modelo de regressão com dados em painel possui uma característica especial: se constitui de uma dimensão *temporal* e outra *espacial*. Isto porque a mesma unidade de corte transversal é acompanhada ao longo do tempo. Outras vantagens, conforme Hsiao (1986), é que os modelos para dados em painel, em relação aos modelos de corte transversal ou de séries temporais, controlam a heterogeinedade presente nos indivíduos e permitem o uso de mais observações, aumentando o número de graus de liberdade e diminuindo a colinearidade entre as variáveis explicativas.~~
 
 ### Taxa básica de juros - Selic
 
@@ -52,7 +60,7 @@ O Sistema Nacional de Índices de Preços ao Consumidor (SNIPC) consiste em uma 
 
 O sistema abrange as regiões metropolitanas do Rio de Janeiro, Porto Alegre, Belo Horizonte, Recife, São Paulo, Belém, Fortaleza, Salvador e Curitiba, além do Distrito Federal e do município de Goiânia. É a partir da agregação dos índices regionais referentes a uma mesma faixa de renda que se obtém o índice nacional.
 
-A população-objetivo do IPCA é referente a famílias residentes nas áreas urbanas das regiões de abrangência do SNIPC com rendimentos de 1 (hum) e 40 (quarenta) salários-mínimos, qualquer que seja a fonte de rendimentos. A Pesquisa é realizada em estabelecimentos comerciais, prestadores de serviços, domicílios e concessionárias de serviços públicos mensalmente.
+A população-objetivo do IPCA é referente a famílias residentes nas áreas urbanas das regiões de abrangência do SNIPC com rendimentos de 1 e 40 salários-mínimos, qualquer que seja a fonte de rendimentos. A Pesquisa é realizada em estabelecimentos comerciais, prestadores de serviços, domicílios e concessionárias de serviços públicos mensalmente.
 
 ![IPCA](Imagens/IPCA.png)
 
@@ -110,38 +118,34 @@ O primeiro passo é a escolha do modelo que melhor se adequa a nossa amostra de 
 Este modelo trata de “empilhar” todas as observações da base de dados, ignorando a estrutura de dados em painel. Desta forma, todas as observações são tratadas como não correlacionadas para os indivíduos, com erros homoscedásticos para com os indivíduos. Trata-se, portanto, da forma mais simplista e ingênua pois desconsidera as dimensões de tempo e espaço combinados, ao mesmo tempo que estima a regressão pelo método dos Mínimos Quadrados Ordinários (MQO).
 
 $$
-y_{it} = \beta_1 + \beta_2 X_{2it} + \beta_3 X_{3it} + \varepsilon_{t_it}
+y_{(i,t)} = \beta_1 + \beta_2 x_{2(i,t)} + \beta_3 x_{3(i,t)} + \varepsilon_{(i,t)}
 $$
 
-Onde $i$ corresponde à $i$-nésima unidade de corte transversal e $t$ o $t$-nésimo período de tempo.
+Onde $i$ corresponde à $i$-ésima unidade de corte transversal e $t$ o $t$-ésimo período de tempo.
 
 #### Modelo com efeitos fixos
 
-O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
+O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo (`Instituicao`) e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
 
 $$
-y_{it} = \beta_0 \sum_{j=1}^k \beta_j X_{j_it} + c_2 I_{2_j} + \textrm{...} + c_n I_{n_i} + \varepsilon_{it}
+y_{(i,t)} = \beta_0 + \sum_{j=1}^k \beta_j x_{j(i,t)} + c_2I_{2_j} + \textrm{...} + c_nI_{n_i} + \varepsilon_{(i,t)}
 $$
 
-Onde $i_{ji} = 1$ se $j = i$, $ I_{ji} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.
+Onde $I_{j_i} = 1$ se $j = i$, $I_{j_i} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.
 
 #### Modelo com efeitos aleatórios
 
 O modelo com efeitos aleatórios pressupõe que os efeitos individuais estejam aleatóriamente distribuídos em torno de uma média $\beta_0$ constante. Desta forma: 
 
 $$
-y_{it} = \beta_0 + \beta_1 X_{it} + w_{it}
+y_{(i,t)} = \beta_0 + \beta_1 x_{(i,t)} + w_{(i,t)}
 $$
 
-onde:
-
-$$
-w_{it} = c_i + \varepsilon_{it}
-$$
-
-O modelo com efeitos aleatórios também é chamado de modelo de correção de erros, justamente por considerar que o erro composto $w_{it}$
-possa, na verdade, ser desagregado em dois componentes:
+onde $w_{(i,t)} = c_i + \varepsilon_{(i,t)}$. O modelo com efeitos aleatórios também é chamado de modelo de correção de erros, justamente por considerar que o erro composto $w_{(i,t)}$ possa, na verdade, ser desagregado em dois componentes:
 
 1. variação entre indivíduos; 
 2. variação geral entre observações.
 
+>  **Observação!**
+>
+> A escolha entre esses métodos vai depender dos testes estatísticos que faremos
