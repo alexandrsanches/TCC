@@ -1,4 +1,4 @@
-# Revisão de literatura
+# Revisão da literatura
 
 Há uma ampla literatura para estudar os efeitos da política monetária, com notável enfoque naqueles intervenientes nas estruturas das taxas de juros de curto prazo e reações do mercado de capitais. É de fundamental importância que as instituições participantes do Sistema Financeiro Nacional (SFN) consigam antecipar os movimentos de política monetária feitos pelo Conselho de Política Monetária (Copom). Cook & Hahn (1989) avaliaram como a rentabilidade de títulos de longo prazo de diferentes maturidades reagem a mudanças na taxa básica de juros do *Federal Reserve (Fed Funds Rate)* no dia em que a mudança ocorre, conforme a seguinte especificação:
 
