@@ -15,7 +15,7 @@ Para atender aos propósitos deste ensaio, utilizaremos os microdados do Boletim
 | Variável                             | Abreviação | Período                            |
 | ------------------------------------ | ---------- | ---------------------------------- |
 | Taxa básica de juros                 | $selic$    | janeiro de 2003 a dezembro de 2020 |
-| Taxa nominal de câmbio               | $cambio$   | janeiro de 2003 a dezembro de 2020 |
+| Taxa de câmbio nominal               | $cambio$   | janeiro de 2003 a dezembro de 2020 |
 | Índice de Preços ao Consumidor Amplo | $ipca$     | janeiro de 2003 a dezembro de 2020 |
 
 Com essa amostra é possível verificar, por instituição, se suas projeções são modificadas com uma surpresa de política monetária. Diferente de outros ensaios presentes na literatura, conseguimos ver, por cada instituição, historicamente, como suas projeções são modificadas com uma surpresa de política monetária. 

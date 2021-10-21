@@ -36,7 +36,7 @@ Tabela 3
 
 As regressões foram executadas com 4646 observações para a variável $cambio$, 5194 para o $ipca$ e 5201 para a $selic$. Como dito anteriormente, trata-se de um modelo de regressão de painel desbalanceado, pelo fato de que nem todas as instituições possuem um logo histórico de projeções.
 
-No que se refere ao coeficiente de ajustamento $R^2$, observa-se que é relativamente baixo para todas as equações. Este resultado pode ser observado também em Tabak (2004), Tabata & Tabak (2004) e em Wu (2009). Conforme destacado em Zabot, Caetano & Caldeira (2013), ainda existe a dificuldade de se ajustar modelos cujas variáveis dependentes estão em primeira diferença.
+​	No que se refere ao coeficiente de ajustamento $R^2$, observa-se que é relativamente baixo para todas as equações. Este resultado pode ser observado também em Tabak (2004), Tabata & Tabak (2004) e em Wu (2009). Conforme destacado em Zabot, Caetano & Caldeira (2013), ainda existe a dificuldade de se ajustar modelos cujas variáveis dependentes estão em primeira diferença.
 
 De acordo com o diagnóstico feito por Gonçalves & Junior (2011), os coeficientes da surpresa apresentam significância estatística ao intervalo de 1% e apresentam sinal negativo para todas as três equações. As reações das instituições, relativamente pequenas, podem ser explicadas pelo aumento da capacidade das instituições em, pelo menos parcialmente, antecipar as ações do Bacen. 
 
