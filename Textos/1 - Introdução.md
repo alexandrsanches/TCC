@@ -18,14 +18,23 @@ As decisões do Copom sobre a política monetária são tomadas em reuniões rea
 
 Dado o amplo impacto da decisão da taxa básica de juros sobre a economia brasileira, percebe-se o motivo pelo qual esse seja assunto de grande relevância. Essas mudanças produzem efeitos nas taxas de juros de mercado, câmbio, crédito, nas expectativas e também nos preços dos ativos. Além disso, as decisões do Copom, ao afetarem a dinâmica destes canais, podem influenciar os níveis de poupança, investimento e demanda agregada, o que em última instância afetaria a taxa de inflação.
 
+## Objetivos
+
 O presente trabalho tem como objetivo verificar a reação das instituições frente a um choque, ou surpresa, de política monetária sobre indicadores macroeconômicos no curto prazo através de diferentes metodologias. A importância fundamental deste tipo de estudo está relacionada com o fato de que em um ambiente financeiro cada vez mais sofisticado, é importante que se leve em consideração o impacto não apenas da política monetária sobre a economia, mas o impacto da interação entre a política monetária e o setor financeiro, dado que as instituições participantes do Relatório de Mercado Focus estão ativamente inseridas no mercado de capitais e títulos.
 
-Como objetivos específicos, este trabalho tratará dos seguintes tópicos: (1) Obtenção e tabulação dos microdados históricos do Relatório de Mercado Focus para construir uma variável capaz de mensurar a surpresa de política monetária; (2) Comparação desta surpresa com outros indicadores mais tradicionais e; (3) Verificação de como as instituições alteram suas projeções quando ocorre uma surpresa de política monetária.
+### Objetivos específicos
 
-Este ensaio é dividido da seguinte forma:
+Como objetivos específicos, este trabalho tratará dos seguintes tópicos: 
 
-> **Colocar um parágrafo para dizer como a monografia se divide!**
->
-> Exemplo:
->
-> Este ensaio é dividido da seguinte forma: a seção 2.2 retrata a questão dos índices de condições financeiras, apresentando seu contexto histórico e uma revisão bibliográfica sobre o tema em questão; na seção 2.3 são apresentadas algumas das principais estratégias empíricas para a construção dos FCIs e MCIs; na seção 2.4 os índices para a economia brasileira são desenvolvidos e testados. Na seqüência, conclui-se o ensaio.
+- Obtenção e tabulação dos microdados históricos do Relatório de Mercado Focus para construir uma variável capaz de mensurar a surpresa de política monetária;
+- Construção de um indicador que seja capaz de representar a surpresa de política monetária e;
+- Verificação de como as instituições alteram suas projeções quando ocorre uma surpresa de política monetária.
+
+## Organização do Trabalho
+
+Este trabalho está estruturado da seguinte forma:
+
+- O Capítulo 2 apresenta uma revisão bibliográfica sobre o tema em questão;
+- O Capítulo 3 apresenta as etapas adotadas que compõem a metodologia proposta para este ensaio;
+- O Capítulo 4 trata sobre os resultados desenvolvidos e os testa e;
+- O Capítulo 5 apresenta as considerações finais sobre os resultados obtidos.
