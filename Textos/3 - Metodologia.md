@@ -1,14 +1,6 @@
 # Metodologia
 
-> **O que já dá para fazer?**
->
-> - ~~Dizer qual a amostra foi utilizada na análise~~;
-> - Justificar o motivo de ter usado essa amostra;
-> - ~~Descrever a base de dados~~;
-> - Colocar os gráficos das séries utilizadas;
-> - Colocar o endereço da pesquisa Focus no campo **URL** do primeiro parágrafo!
-
-Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em <**url**>), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
+Para a análise da reação das instituições frente às surpresas de política monetária, foram utilizados os microdados do Relatório de Mercado Focus (disponíveis em [Boletim Focus](https://www.bcb.gov.br/publicacoes/focus)), onde cada seção transversal semanal fornece uma amostra representativa das instituições. O Bacen realiza, semanalmente, uma pesquisa com a projeção de cerca de 150 instituições financeiras com as principais estatísticas do cenário econômico. O Boletim Focus também destaca as cinco empresas que mais acertam em suas projeções. Toda segunda-feira ele é publicado no site oficial do Bacen com um compilado dos indicadores macroeconômicos mais importantes para a economia. Entre os indicadores analisados estão o IPCA, o IGP-M, a taxa de câmbio, a taxa de crescimento do PIB e a taxa Selic. 
 
 Os indicadores são compilados na sexta-feira anterior à publicação a partir de informações repassadas pelos principais bancos, agentes econômicos e instituições financeiras. As expectativas projetadas para o fechamento daquele ano são reunidas durante a semana e compiladas na sexta-feira. Os dados no relatório costumam ser apresentados em forma de tabela e em formato de gráfico. A tabela traz o comportamento dos indicadores na data de publicação do relatório, da semana anterior e do último mês. 
 
@@ -118,20 +110,20 @@ O primeiro passo é a escolha do modelo que melhor se adequa a nossa amostra de 
 Este modelo trata de “empilhar” todas as observações da base de dados, ignorando a estrutura de dados em painel. Desta forma, todas as observações são tratadas como não correlacionadas para os indivíduos, com erros homoscedásticos para com os indivíduos. Trata-se, portanto, da forma mais simplista e ingênua pois desconsidera as dimensões de tempo e espaço combinados, ao mesmo tempo que estima a regressão pelo método dos Mínimos Quadrados Ordinários (MQO).
 
 $$
-y_{it} = \beta_1 + \beta_2 X_{2it} + \beta_3 X_{3it} + \varepsilon_t_{it}
+y_{it} = \beta_1 + \beta_2 X_{2it} + \beta_3 X_{3it} + \varepsilon_{t_it}
 $$
 
 Onde $i$ corresponde à $i$-nésima unidade de corte transversal e $t$ o $t$-nésimo período de tempo.
 
 #### Modelo com efeitos fixos
 
-O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo (`Instituicao`) e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
+O modelo de regressão com efeitos fixos considera, como visto anteriormente, que os valores dos interceptos para cada regressão ($\alpha_i$) variam de acordo com o efeito de cada indivíduo e que os coeficientes de inclinação, das variáveis independentes, para cada equação são os mesmos para cada instituição, conforme equação abaixo:
 
 $$
-y_{it} = \beta_0 \sum_{j=1}^k \beta_j X_j_it + c_2I_2_j + \textrm{...} + c_nI_n_i + \varepsilon_{it}
+y_{it} = \beta_0 \sum_{j=1}^k \beta_j X_{j_it} + c_2 I_{2_j} + \textrm{...} + c_n I_{n_i} + \varepsilon_{it}
 $$
 
-Onde $i_{ji} = 1$ se $j = i$, I_{ji} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.
+Onde $i_{ji} = 1$ se $j = i$, $ I_{ji} = 0$ se $j \neq i$. Os estimadores $c_j$ são estimadores de variáveis binárias.
 
 #### Modelo com efeitos aleatórios
 
@@ -141,12 +133,15 @@ $$
 y_{it} = \beta_0 + \beta_1 X_{it} + w_{it}
 $$
 
-onde $w_{it} = c_i + \varepsilon_{it}$. O modelo com efeitos aleatórios também é chamado de modelo de correção de erros, justamente por considerar que o erro composto $w_{it}$
+onde:
+
+$$
+w_{it} = c_i + \varepsilon_{it}
+$$
+
+O modelo com efeitos aleatórios também é chamado de modelo de correção de erros, justamente por considerar que o erro composto $w_{it}$
 possa, na verdade, ser desagregado em dois componentes:
 
 1. variação entre indivíduos; 
 2. variação geral entre observações.
 
->  **Observação!**
->
-> A escolha entre esses métodos vai depender dos testes estatísticos que faremos

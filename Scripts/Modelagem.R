@@ -9,6 +9,9 @@ switch (Sys.info()["sysname"],
 
 library(rio)
 library(plm)
+library(lmtest)
+require(tseries)
+library(stargazer)
 
 # Obtenção e formatação dos dados ----
 
@@ -76,6 +79,12 @@ reg.ea.ipca <- plm(expect_ipca ~ surpresa, data = base, index = "data", model = 
                    random.method = "walhus")
 summary(reg.ea.ipca)
 
+stargazer(reg.ea.cambio, reg.ea.ipca, reg.ea.selic,
+          align = TRUE,
+          title = "Resultado das regressões",
+          dep.var.labels = c("Expectativa do câmbio", "Expectativa do IPCA", "Expectativa da Selic"),
+          covariate.labels = c("Surpresa", "Constante"))
+
 # Escolha do modelo mais adequado ----
 
 ## Modelo MQO agrupado x Modelo de Efeitos Fixos ----
@@ -100,19 +109,27 @@ phtest(reg.ef.ipca, reg.ea.ipca)
 
 ## Dependência transversal ----
 
-pcdtest(reg.ea, test="cd")
+pcdtest(reg.ea.selic, test = "cd")
+pcdtest(reg.ea.cambio, test = "cd")
+pcdtest(reg.ea.ipca, test = "cd")
 
 ## Normalidade dos resíduos ----
 
-shapiro.test(reg.ea$residuals)
+shapiro.test(reg.ea.selic$residuals[0:5000])
+shapiro.test(reg.ea.cambio$residuals[0:5000])
+shapiro.test(reg.ea.ipca$residuals[0:5000])
 
 ## Homocedasticidade dos resíduos ----
 
-bptest(reg.ea)
+bptest(reg.ea.cambio)
+bptest(reg.ea.ipca)
+bptest(reg.ea.selic)
 
 ## Correlação serial ----
 
-pbgtest(reg.ea) 
+pbgtest(reg.ea.cambio)
+pbgtest(reg.ea.ipca)
+pbgtest(reg.ea.selic)
 
 ## Efeitos individuais ou de tempo ----
 
@@ -123,5 +140,5 @@ pwtest(reg.pooled)
 pwtest(reg.pooled, effect = "time") 
 
 ## Raiz unitária ----
-adf.test(base$Surpresa, k = 2)
+adf.test(base$surpresa, k = 2)
 

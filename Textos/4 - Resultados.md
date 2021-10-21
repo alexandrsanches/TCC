@@ -14,17 +14,29 @@ Kuttner (2001), apresentando uma extensão da equação de Cook & Hahn (1989), c
 
 Para efetuarmos a escolha do modelo que melhor se adequa aos dados, utilizaremos alguns testes que se seguem abaixo:
 
-| Pergunta                            | Teste utilizado                               | Hipótese nula          | Resultado                              |
-| ----------------------------------- | --------------------------------------------- | ---------------------- | -------------------------------------- |
-| MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries |
-| MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries |
-| Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor | Hipótese rejeitada para as três séries |
+| Pergunta                            | Teste utilizado                               | Hipótese nula          | Resultado                                                    |
+| ----------------------------------- | --------------------------------------------- | ---------------------- | ------------------------------------------------------------ |
+| MQO Agrupado ou Efeitos Fixos?      | F Test for Individual and/or Time Effects     | MQO Agrupado é melhor  | Hipótese aceita para duas das três variáveis (Selic e Câmbio) |
+| MQO agrupado ou Efeitos Aleatórios? | Lagrange FF Multiplier Tests for Panel Models | MQO Agrupado é melhor  | Hipótese rejeitada para as três séries                       |
+| Efeitos fixos ou aleatórios?        | Hausman Test for Panel Models                 | Efeitos Fixos é melhor | Hipótese rejeitada para as três séries                       |
 
 De acordo com o resultado apresentado acima, o modelo que melhor se adequa aos nossos propósitos é o modelo de efeitos aleatórios.
 
-## Parâmetros estimados
+## Resultados das regressões via modelo com efeitos fixos
+
+O modelo aqui proposto procura verificar como as instituições alteram suas projeções quando são surpreendidas por um choque não antecipado de política monetária (aqui chamado de surpresa de política monetária). Assim, a análise empírica baseia-se em regressões com uso das variáveis em primeira diferença como variáveis dependentes e o choque não antecipados de política monetária como regressores. A Tabela 3 ilutras os resultados:
+
+![Captura de Tela 2021-10-20 às 20.28.50](/Users/alexandresanches/Library/Application Support/typora-user-images/Captura de Tela 2021-10-20 às 20.28.50.png)
+
+No que se refere ao coeficiente de ajustamento $R^2$, observa-se que é relativamente baixo para todas as equações. Este resultado pode ser observado também em Tabak (2004), Tabata & Tabak (2004) e em Wu (2009). Conforme destacado em Zabot, Caetano & Caldeira (2013), ainda existe a dificuldade de se ajustar modelos cujas variáveis dependentes estão em primeira diferença.
+
+De acordo com o diagnóstico feito por Gonçalves & Junior (2011), os coeficientes da surpresa apresentam significância estatística ao intervalo de 1% e apresentam sinal negativo para todas as três equações. As reações das instituições, relativamente pequenas, podem ser explicadas pelo aumento da capacidade das instituições em, pelo menos parcialmente, antecipar as ações do Bacen. 
 
 ## Diagnósticos dos modelos selecionados
+
+A dependência *cross-sectional* se apresenta em painéis com longas séries de tempo. A hipótese nula é de que os resíduos através dos indivíduos não estão correlacionados. Nossa amostra, para nenhum dos três modelos, aceita a hipótese nula do teste de Pesaran (2015), portanto, os dados estão correlacionados.
+
+ O teste Breusch-Pagan (1979 é usado para testar a heteroscedasticidade em um modelo de regressão linear. A hipótese nula é a de que não há homocedasticidade nos resíduos. Apenas a expectativa da Selic aceita a hipótese nula, portanto, há problemas nos resíduos das outras duas regressões,  então, as variáveis apresentam problemas de heterocedasticidade. De acordo com Uchôa (2012), não é incomum que modelos de efeito fixo
 
 > **O que podemos fazer:**
 >
