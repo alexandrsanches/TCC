@@ -1,5 +1,0 @@
-Tabela de juros BCB - https://www.bcb.gov.br/controleinflacao/historicotaxasjuros
-Pooled Ordinary Least Squares - https://www.youtube.com/watch?v=Itiy-23X7ao
-POLS in R - https://www.youtube.com/watch?v=Zy-qhHIK13I
-Dados em painel no R - https://smolski.github.io/livroavancado/index.html
-Converter bib em PDF - https://www.files-conversion.com/document/bib

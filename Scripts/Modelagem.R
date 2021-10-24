@@ -1,3 +1,9 @@
+# General instructions ----
+# 1. Load this script in UTF-8 encoding, because the special characters will not appear. File > Reopen with encoding > UTF-8
+# 2. This script was made in R 4.1.1 in macOS
+
+#### MADE BY ALEXANDRE SANCHES ####
+
 # Set working directory ----
 
 switch (Sys.info()["sysname"],
@@ -38,8 +44,11 @@ summary(reg.agrupada.cambio)
 reg.agrupada.ipca <- plm(expect_ipca ~ surpresa, data = base, model = "pooling")
 summary(reg.agrupada.ipca)
 
+### Exportar regressão ----
+
 stargazer(reg.agrupada.cambio, reg.agrupada.ipca, reg.agrupada.selic,
           align = TRUE,
+          #omit.stat = c("f"),
           title = "Resultado das regressões com MQO agrupado",
           dep.var.labels = c("Expectativa do câmbio", "Expectativa do IPCA", "Expectativa da Selic"),
           covariate.labels = c("Surpresa", "Constante"),
@@ -64,6 +73,8 @@ summary(fixef(reg.ef.cambio))
 reg.ef.ipca <- plm(expect_ipca ~ surpresa, data = base, index = "data", model = "within")
 summary(reg.ef.ipca)
 summary(fixef(reg.ef.ipca))
+
+### Exportar regressão ----
 
 stargazer(reg.ef.cambio, reg.ef.ipca, reg.ef.selic,
           align = TRUE,
@@ -91,6 +102,8 @@ summary(reg.ea.cambio)
 reg.ea.ipca <- plm(expect_ipca ~ surpresa, data = base, index = "data", model = "random",
                    random.method = "walhus")
 summary(reg.ea.ipca)
+
+### Exportar regressão ----
 
 stargazer(reg.ea.cambio, reg.ea.ipca, reg.ea.selic,
           align = TRUE,
@@ -154,66 +167,3 @@ pwtest(reg.pooled, effect = "time")
 
 ## Raiz unitária ----
 adf.test(base$surpresa, k = 2)
-
-# TESTES ----
-### Expectativas do câmbio ----
-
-
-
-reg.agrupada.cambio <- plm(expect_cambio ~ surpresa, data = base, model = "pooling")
-summary(reg.agrupada.cambio)
-
-### Expectativas do IPCA ----
-
-reg.ef.ipca <- plm(expect_ipca ~ surpresa, data = base, index = "data", model = "within")
-summary(reg.ef.ipca)
-print(xtable(summary(fixef(reg.ef.ipca))), type = "latex")
-
-### Expectativas da Selic ----
-
-reg.ea.selic <- plm(expect_selic ~ surpresa, data = base, index = "data", model = "random",
-                    random.method = "walhus")
-summary(reg.ea.selic)
-
-stargazer(reg.agrupada.cambio, reg.ef.ipca, reg.ea.selic,
-          align = TRUE,
-          title = "Resultado das regressões",
-          dep.var.labels = c("Expectativa do câmbio", "Expectativa do IPCA", "Expectativa da Selic"),
-          covariate.labels = c("Surpresa", "Constante"),
-          notes = "Fonte: elaboração própria utilizando R 4.1.1")
-
-nobs(reg.agrupada.cambio)
-nobs(reg.ef.ipca)
-nobs(reg.ea.selic)
-
-plot(ranef(reg.ea.selic),
-     xlab = "Instituição",
-     ylab = "Coeficiente")
-
-ea <- data.frame(Index = 0:95,
-                 Instituicao = NA,
-                 Coeficiente = ranef(reg.ea.selic))
-
-ea$Instituicao <- as.numeric(rownames(ea))
-
-xyplot(Coeficiente ~ Index,
-       data = ea,
-       pch = 21, 
-       type = c("p", "g", "smooth"),
-       xlab = "",
-       ylab = "Coeficiente")
-
-cloud(Coeficiente ~ Index * Instituicao, 
-      data = ea)
-
-ggplot(ea, aes(Index, Coeficiente, label = Instituicao)) +
-  geom_point() +
-  geom_text(check_overlap = TRUE,
-            vjust = -0.7)
-
-## Exportar tabelas para LatEx ----
-teste <- data.frame(Variável = c("Taxa básica de juros", "Taxa nominal de câmbio", "Taxa de câmbio nominal"),
-                    Abreviação = c("$selic$", "$cambio$", "$ipca$"),
-                    Período = c("janeiro de 2003 a dezembro de 2020", "janeiro de 2003 a dezembro de 2020", "janeiro de 2003 a dezembro de 2020"))
-
-print(xtable(teste), type = "latex", include.rownames = FALSE)

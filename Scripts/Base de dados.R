@@ -1,3 +1,9 @@
+# General instructions ----
+# 1. Load this script in UTF-8 encoding, because the special characters will not appear. File > Reopen with encoding > UTF-8
+# 2. This script was made in R 4.1.1 in macOS
+
+#### MADE BY ALEXANDRE SANCHES ####
+
 # Set working directory ----
 
 switch (Sys.info()["sysname"],
@@ -11,36 +17,109 @@ library(rio)
 library(tidyverse)
 library(lubridate)
 library(lattice)
-library(fBasics)
 library(stargazer)
+library(xts)
+library(openxlsx)
+
+# Set options ----
 
 options(digits = 3)
 
 # Import data ----
-base <- import("Dados/base_final.rds")
-copom <- import("Dados/copom.rds") %>%
-  select(Reuniao, MetaSelic)
+copom <- read.xlsx("Dados/Meta para SELIC.xlsx") %>%
+  mutate(Data = convertToDate(Data),
+         VigenciaInicio = convertToDate(VigenciaInicio),
+         VigenciaFim = convertToDate(VigenciaFim))
 
-## Bases mensais e anuais ----
-base_mensal <- import("Dados/base_mensal.rds")
+download.file("https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/ExpectativasMercadoInstituicoes?$format=text/csv&$select=Instituicao,Indicador,IndicadorDetalhe,Periodicidade,Data,DataReferencia,Valor",
+              destfile = "Dados/Focus.csv")
 
 # Clean data ----
+## Database ----
+base_mensal <- read_csv("Dados/Focus.csv") %>%
+  filter(Periodicidade == "Mensal",
+         Indicador %in% c("IPCA", "PIB Total", "Selic", "Câmbio"),
+         Data >= "2003-01-01" & Data <= "2020-12-31") %>%
+  mutate(Indicador = ifelse(IndicadorDetalhe != "null", paste(Indicador, "-", IndicadorDetalhe), Indicador),
+         Valor = as.numeric(gsub(Valor, pattern = ",", replacement = "."))) %>%
+  select(-IndicadorDetalhe) %>%
+  group_by(Instituicao, Indicador, Periodicidade, DataReferencia) %>% 
+  arrange(Data) %>% 
+  complete(Data = seq.Date(min(Data), max(Data) + 14, by="day")) %>% 
+  mutate(Atualizacao = ifelse(is.na(Valor), 0, 1)) %>%
+  fill(c(Valor, DataReferencia), .direction = "down") %>% 
+  arrange(Instituicao, Indicador, Periodicidade, Data, DataReferencia) %>% 
+  ungroup()
 
-## Câmbio ----
+## Copom database ----
+reunioes <- copom %>%
+  select(Reuniao, Data)
+
+reunioes <- xts(reunioes[, -2], order.by = reunioes$Data)
+
+## Look for reunion dates ----
+selic <- base_mensal %>%
+  filter(Indicador == "Selic") %>%
+  select(Instituicao, Data, DataReferencia, Valor)
+
+df <- data.frame()
+
+for (i in 1:nrow(selic)) {
+  
+  year <- year(pull(selic[i, 2]))
+  month <- format(pull(selic[i, 2]), "%m")
+  
+  reunion_date <- reunioes[paste0(year, "-", month, "/", year, "-", month)]
+  
+  if (is_empty(reunion_date)) {
+    if (month == 12) {
+      month <- 1
+      year <- year(pull(selic[i, 2])) + 1
+    } else {
+      month <- month(pull(selic[i, 2])) + 1
+    }
+    if (month < 10) {
+      month <- paste0(0, month)
+    }
+    reunion_date <- reunioes[paste0(year, "-", month, "/", year, "-", month)]
+  }
+  
+  reunion_date <- data.frame(DataReuniao = index(reunion_date),
+                             Reuniao = reunion_date[1,])
+  
+  initial_month <- as_date(paste0(year(reunion_date[,1]), "-", month(reunion_date[,1]), "-01"))
+  
+  temp <- selic %>%
+    filter(row.names(.) == i) %>%
+    mutate(DataReuniao = reunion_date[,1],
+           Reuniao = reunion_date[,2])
+  
+  df <- rbind(df, temp)
+  
+  print(i)
+  
+}
+
+base <- df
+
+rm(df, selic)
+
+## Left_join base ----
+### Exchange rate ----
 cambio <- base_mensal %>%
   filter(Indicador == "Câmbio",
          Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(Cambio = Valor)
 
-## IPCA ----
+### IPCA ----
 ipca <- base_mensal %>%
   filter(Indicador == "IPCA",
          Data >= "2003-01-01") %>%
   select(Instituicao, Data, DataReferencia, Valor) %>%
   rename(IPCA = Valor)
 
-## Base final ----
+## Final base ----
 base <- base %>%
   mutate_at(vars(contains("Data")), as_date) %>%
   left_join(copom) %>%
@@ -53,48 +132,23 @@ base <- base %>%
   relocate(where(is.numeric), .after = where(is.Date)) %>%
   relocate(Reuniao, .before = Instituicao) %>%
   group_by(Instituicao) %>%
-  mutate(Cambio = Cambio - dplyr::lag(Cambio),
-         SELIC = SELIC - dplyr::lag(SELIC),
-         Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - SELIC,
+  mutate(Surpresa = (MetaSelic - dplyr::lag(MetaSelic)) - (SELIC - dplyr::lag(SELIC)),
          Instituicao = factor(Instituicao))
 
-### Filtrar instituições com poucas projeções ----
-#instituicoes <- base %>% 
-#  group_by(Instituicao) %>%
-#  distinct(Reuniao) %>%
-#  mutate(n = max(Reuniao) - min(Reuniao)) %>%
-#  ungroup() %>%
-#  distinct(Instituicao, .keep_all = TRUE) %>%
-#  filter(n > 30) %>%
-#  pull(Instituicao)
-
-#base %>%
-#  #filter(Instituicao %in% instituicoes) %>%
-#  distinct(Instituicao) %>%
-#  count()
-#
-#base <- base %>%
-#  filter(Instituicao %in% instituicoes)
-  
-rm(base_mensal,
-   cambio,
-   copom,
-   ipca)
-
-export(base, file = "Dados/base_regressao.rds")
+EXport("Dados/base_regressao.rds")
 
 # Generate charts ----
 xyplot(IPCA ~ Data | Instituicao, 
-                base, 
-                type = "l", 
-                as.table = TRUE,
-                auto.key = TRUE,
-                lwd = 2,
-                col = "#084184",
-                ylab = "", 
-                xlab = "Data")
+       base, 
+       type = "l", 
+       as.table = TRUE,
+       auto.key = TRUE,
+       lwd = 2,
+       col = "#084184",
+       ylab = "", 
+       xlab = "Data")
 
-# Estatísticas descritivas ----
+# Descritive statistics ----
 desc <- data.frame(variavel = c("Câmbio", "IPCA", "Selic", "Surpresa"),
                    Média = rep(NA, 4),
                    Mediana = rep(NA, 4),
@@ -149,3 +203,5 @@ desc[4, 8] <- skewness(base$surpresa, na.rm = TRUE)
 desc <- t(desc)
 
 stargazer(desc)
+
+
