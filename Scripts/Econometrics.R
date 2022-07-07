@@ -20,7 +20,7 @@ library(stargazer)
 
 # Obtenção e formatação dos dados ----
 
-base <- import("Dados/base_regressao.rds")
+base <- import("Data/base_regressao.rds")
 base <- pdata.frame(base, index = c("Instituicao","Data"))
 names(base) <- c("data", "data_previsao", "data_reuniao", "reuniao", "instituicao", "expect_selic",
                  "meta_selic", "expect_ipca", "expect_cambio", "surpresa")
